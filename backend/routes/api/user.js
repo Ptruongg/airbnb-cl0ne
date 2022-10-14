@@ -27,7 +27,8 @@ const validateSignup = [
   handleValidationErrors
 ];
 
-router.get('/', requireAuth, async (req, res) => {
+//get current user
+router.get('/currentUser', requireAuth, async (req, res) => {
   const user = {
     id: req.user.id,
     firstName: req.user.firstName,
@@ -40,7 +41,7 @@ router.get('/', requireAuth, async (req, res) => {
 
 
 //sign-up
-router.post('/', validateSignup, async (req, res) => {
+router.post('/sign-up', validateSignup, async (req, res) => {
       const { email, password, username, firstName, lastName } = req.body;
       let errors = [];
 
@@ -64,13 +65,28 @@ router.post('/', validateSignup, async (req, res) => {
 
       const user = await User.signup({ email, username, password, firstName, lastName });
 
-      await setTokenCookie(res, user);
+      const token = await setTokenCookie(res, user);
+
+      const newUser = {
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        token: token,
+      };
+
 
       return res.json({
-        user
+        newUser
       });
   }
 );
 
+//get all users
+router.get("/", async (req, res) => {
+  let users = await User.findAll();
+  return res.json(users);
+})
 
 module.exports = router;
