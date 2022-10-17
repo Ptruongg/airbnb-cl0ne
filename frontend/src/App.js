@@ -6,6 +6,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfileButton from "./components/Navigation/ProfileButton";
+import DemoUser from "./components/DemoUser";
+import AllSpots from "./components/Spots"
 
 function App() {
   const dispatch = useDispatch();
@@ -21,10 +23,14 @@ function App() {
         <Switch>
           <Route exact path="/login">
             <LoginFormPage />
+            <DemoUser />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
-            {/* <ProfileButton /> */}
+            <ProfileButton />
+          </Route>
+          <Route exact path="/">
+            <AllSpots />
           </Route>
         </Switch>
       )}

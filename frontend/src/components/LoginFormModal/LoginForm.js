@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./Login.css";
+import DemoUser from "../DemoUser"
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function LoginForm() {
   return (
         <div className="modal">
       <div>
-        <h2 className="welcomeContainer"> Welcome to StairBnB </h2>
+        <h2 className="welcomeContainer"> Airbnb Cl0ne Login </h2>
       </div>
       <form className="loginContainer" onSubmit={handleSubmit}>
         <div id="errors_login">
