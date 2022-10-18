@@ -6,7 +6,7 @@ const CREATE = 'spots/CREATE';
 const EDIT = 'spots/EDIT';
 const DELETE = 'spots/DELETE';
 
-const getAllSpots = (spots) => {
+const getSpots = (spots) => {
     return {
         type: GET_ALL_SPOTS,
         spots
@@ -41,18 +41,17 @@ const deleteSpot = (spotId) => {
     }
 }
 
-export const getSpots = async (dispatch) => {
-    const response = csrfFetch("/api/spots");
-    console.log(response)
+export const getAllSpots = async (dispatch) => {
+    const response = await csrfFetch("/api/spots");
     if (response.ok) {
-        const spots = await response.json()
-        dispatch(getAllSpots(spots));
-        const all = {};
-        spots.forEach((spot) => all([spot.id]));
-        return { ...all }
+      const spots = await response.json();
+      dispatch(getSpots(spots));
+      const all = {};
+      spots.spots.forEach((spot) => (all[spot.id] = spot));
+      return { ...all };
     }
     return {};
-}
+  };
 
 const initialState = {};
 const spotsReducer = (state = initialState, action) => {
@@ -60,7 +59,7 @@ const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_SPOTS: {
             const allSpots = {};
-            action.spots.forEach((spot) => (allSpots[spot.id] = spot));
+            action.spots.spots.forEach((spot) => (allSpots[spot.id] = spot));
             return allSpots;
         }
         default:
