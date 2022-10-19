@@ -9,6 +9,7 @@ import ProfileButton from "./components/Navigation/ProfileButton";
 import DemoUser from "./components/DemoUser";
 import AllSpots from "./components/Spots";
 import SpotDetails from "./components/SpotDetails";
+import CreateSpotForm from "./components/CreateSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +36,10 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <SpotDetails />
-            </Route>
+          </Route>
+          <Route exact path="/spots/create">
+            <CreateSpotForm />
+          </Route>
         </Switch>
       )}
     </>

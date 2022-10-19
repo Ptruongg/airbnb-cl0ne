@@ -1,27 +1,36 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
-import * as spotActions from "../../store/spots"
-import "./createSpot.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import * as spotActions from "../../store/spots";
+import "./spotEdit.css";
 
-const CreateSpotForm = () => {
+const SpotEdit = () => {
     const dispatch = useDispatch();
+    const useHistory = useHistory();
+    const { spotId } = useParams();
+    spotId = Number(spotId)
 
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [country, setCountry] = useState("");
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(1);
-    const [previewImage, setPreviewImage] = useState("");
-    // const [avgRating, setAvgRating] = useState('');
+    const spot = useSelector((state) => state.spots[spotId])
+
+    const [address, setAddress] = useState(spot?.address);
+    const [city, setCity] = useState(spot?.city);
+    const [state, setState] = useState(spot?.state);
+    const [country, setCountry] = useState(spot?.country);
+    const [name, setName] = useState(spot?.name);
+    const [description, setDescription] = useState(spot?.description);
+    const [price, setPrice] = useState(spot?.price);
+    const [previewImage, setPreviewImage] = useState(spot?.previewImage);
     const [errors, setErrors] = useState([])
-    const [submitSuccess, setSubmitSuccess] = useState(false);
 
-    if (submitSuccess) {
-        return <Redirect to="/" />
-    };
+    const updatedAddress = (e) => setAddress(e.target.value);
+    const updatedCity = (e) => setCity(e.target.value);
+    const updatedState = (e) => setState(e.target.value);
+    const updatedCountry = (e) => setCountry(e.target.value);
+    const updatedName = (e) => setName(e.target.value);
+    const updatedDescription = (e) => setDescription(e.target.value);
+    const updatedPrice = (e) => setPrice(e.target.value);
+    const updatedPreviewImage = (e) => setPreviewImage(e.target.value);
+
 
     const errorAlerts = () => {
         const errorNotifications = [];
@@ -36,6 +45,7 @@ const CreateSpotForm = () => {
 
         return errorNotifications
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -56,7 +66,7 @@ const CreateSpotForm = () => {
             setErrors(validationErrors)
             return;
         }
-        return dispatch(spotActions.createSpot(post))
+        return dispatch(spotActions.editSpotID(post))
             .then(async (res) => {
                 setSubmitSuccess(true);
             })
@@ -86,7 +96,7 @@ const CreateSpotForm = () => {
                         type="text"
                         placeholder="Address"
                         value={address}
-                        onChange={(e) => setAddress(e.target.value)}
+                        onChange={updatedAddress}
                         required
                     />
                 </div>
@@ -97,7 +107,7 @@ const CreateSpotForm = () => {
                         <input
                             type="text"
                             value={city}
-                            onChange={(e) => setCity(e.target.value)}
+                            onChange={updatedCity}
                             required
                         />
                     </label>
@@ -109,7 +119,7 @@ const CreateSpotForm = () => {
                         <input
                             type="text"
                             value={state}
-                            onChange={(e) => setState(e.target.value)}
+                            onChange={updatedState}
                             required
                         />
                     </label>
@@ -121,7 +131,7 @@ const CreateSpotForm = () => {
                         <input
                             type="text"
                             value={country}
-                            onChange={(e) => setCountry(e.target.value)}
+                            onChange={updatedCountry}
                             required
                         />
                     </label>
@@ -133,7 +143,7 @@ const CreateSpotForm = () => {
                         <input
                             type="text"
                             value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={updatedName}
                             required
                         />
                     </label>
@@ -144,7 +154,7 @@ const CreateSpotForm = () => {
                         Description
                         <textarea
                             value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            onChange={updatedDescription}
                             required
                         />
                     </label>
@@ -156,7 +166,7 @@ const CreateSpotForm = () => {
                         <input
                             type="number"
                             value={price}
-                            onChange={(e) => setPrice(e.target.value)}
+                            onChange={updatedPrice}
                             required
                         />
                     </label>
@@ -168,20 +178,19 @@ const CreateSpotForm = () => {
                         <input
                             type="text"
                             value={previewImage}
-                            onChange={(e) => setPreviewImage(e.target.value)}
+                            onChange={updatedPreviewImage}
                             required
                         />
                     </label>
                 </div>
                     <div className="buttonContainer">
-                        <button className="createSpot" type="submit" >
-                            Create Spot
+                        <button className="confirmEditButton" type="submit" >
+                            Confirm Edit
                         </button>
                     </div>
             </form>
         </div>
     );
-};
+}
 
-
-export default CreateSpotForm
+export default SpotEdit

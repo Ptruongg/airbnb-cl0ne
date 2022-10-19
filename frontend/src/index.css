@@ -1,1 +1,14 @@
 /* TODO Add site wide styles */
+body {
+    align-items: center;
+    padding: 0 40px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+      Helvetica Neue, sans-serif;
+  }
+
+  .pageNotFound {
+    font-size: 50px;
+    margin-top: 100px;
+    text-align: center;
+    display: block;
+  }
