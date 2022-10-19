@@ -41,10 +41,11 @@ const CreateSpotForm = () => {
         setErrors([]);
 
         let post = {
+            name: name,
             address: address,
             city: city,
             state: state,
-            name: name,
+            country: country,
             description: description,
             price: price,
             previewImage: previewImage,
@@ -78,6 +79,18 @@ const CreateSpotForm = () => {
                         ))}
                     </ul>
                 )}
+                <div>
+
+                    <label>
+                        Name
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </label>
+                </div>
                 <div>
                     <label>
                         Address
@@ -129,18 +142,6 @@ const CreateSpotForm = () => {
                 <div>
 
                     <label>
-                        Name
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div>
-
-                    <label>
                         Description
                         <textarea
                             value={description}
@@ -173,11 +174,11 @@ const CreateSpotForm = () => {
                         />
                     </label>
                 </div>
-                    <div className="buttonContainer">
-                        <button className="createSpot" type="submit" >
-                            Create Spot
-                        </button>
-                    </div>
+                <div className="buttonContainer">
+                    <button className="createSpot" type="submit" >
+                        Create Spot
+                    </button>
+                </div>
             </form>
         </div>
     );
