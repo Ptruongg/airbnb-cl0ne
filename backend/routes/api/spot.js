@@ -200,7 +200,7 @@ router.post('/', requireAuth, async(req, res) => {
     }
 
     const spot = await Spot.create({
-        ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price
+        ownerId: req.user.id, address, city, state, country, name, description, price
 
     })
     return res.json(spot)
@@ -246,8 +246,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
       city,
       state,
       country,
-      lat,
-      lng,
       name,
       description,
       price,
@@ -272,8 +270,8 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     if (!city) error.errors.city = "City is required";
     if (!state) error.errors.state = "State is required";
     if (!country) error.errors.country = "Country is required";
-    if (!lat) error.errors.lat = "Latitude is not valid";
-    if (!lng) error.errors.lng = "Longitude is not valid";
+    // if (!lat) error.errors.lat = "Latitude is not valid";
+    // if (!lng) error.errors.lng = "Longitude is not valid";
     if (!name) error.errors.name = "Name must be less than 50 characters";
     if (!description) error.errors.description = "Description is required";
     if (!price) error.errors.price = "Price per day is required";
@@ -283,8 +281,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
       !city ||
       !state ||
       !country ||
-      !lat ||
-      !lng ||
       !name ||
       !description ||
       !price
@@ -298,8 +294,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
       city,
       state,
       country,
-      lat,
-      lng,
       name,
       description,
       price,

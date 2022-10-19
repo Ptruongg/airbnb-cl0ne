@@ -32,14 +32,14 @@ module.exports = {
         type: Sequelize.STRING,
 
       },
-      lat: {
-        type: Sequelize.DECIMAL,
+      // lat: {
+      //   type: Sequelize.DECIMAL,
 
-      },
-      lng: {
-        type: Sequelize.DECIMAL,
+      // },
+      // lng: {
+      //   type: Sequelize.DECIMAL,
 
-      },
+      // },
       name: {
         type: Sequelize.STRING,
 
