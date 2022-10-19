@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import { getAllSpots } from "../../store/spots";
+import { getAllSpots, deleteSpotId } from "../../store/spots";
 import { getAllUsers } from "../../store/user";
+
 import "./spotDetails.css"
 
 const SpotDetails = () => {
@@ -12,6 +13,7 @@ const SpotDetails = () => {
     const { spotId } = useParams();
     const spotState = useSelector((state) => state.spots)
     const userState = useSelector((state) => state)
+    const sessionUser = useSelector((state) => state.session.user)
     const spot = spotState[spotId]
     // console.log('this is the spot state', spotState);
     // console.log('SPOT', spot)
@@ -28,6 +30,12 @@ const SpotDetails = () => {
         e.preventDefault();
         history.push(`/spots/${spotId}/edit`)
     }
+
+    const spotDelete = (e) => {
+        e.preventDefault();
+        dispatch(deleteSpotId(spotId));
+        history.push('/')
+    }
     return (
         spot && (
             <>
@@ -42,9 +50,16 @@ const SpotDetails = () => {
                     <div className="spotDescription">
                         <div> {spot.description} </div>
                     </div>
-                    <button onClick={editSpot}>
-                        Edit
-                    </button>
+                    {sessionUser && sessionUser.id === spot.ownerId &&
+                        (<div>
+                            <button onClick={editSpot}>
+                                Edit
+                            </button>
+                            <button onClick={spotDelete}>
+                                Delete
+                            </button>
+                        </div>)}
+
                 </div>
             </>
         )

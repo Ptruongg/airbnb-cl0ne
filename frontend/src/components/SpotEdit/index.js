@@ -66,7 +66,7 @@ const SpotEdit = () => {
             setErrors(validationErrors)
             return;
         }
-        return dispatch(spotActions.editSpotID(post))
+        return dispatch(spotActions.spotEdit(post))
             .then(async (res) => {
                 // setSubmitSuccess(true);
                 history.push(`/spots/${spotId}`)

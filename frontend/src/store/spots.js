@@ -99,19 +99,32 @@ export const createSpot = (spot) => async (dispatch) => {
 }
 
 //edit a spot
-export const editSpotID = (spot) => async (dispatch) => {
-    const response = await csrfFetch(`api/spots/${spot.spotId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(spot)
+// export const editSpotID = (spot) => async (dispatch) => {
+//     const response = await csrfFetch(`api/spots/${spot.spotId}`, {
+//         method: "PUT",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(spot)
+//     });
+//     if (response.ok) {
+//         const editedSpot = await response.json();
+//         dispatch(editSpot(editedSpot))
+//         return editedSpot;
+//     }
+//     return response;
+// }
+export const spotEdit = (spot) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spot.spotId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(spot),
     });
     if (response.ok) {
-        const editedSpot = await response.json();
-        dispatch(editSpot(editedSpot))
-        return editedSpot;
+      const editedSpot = await response.json();
+      dispatch(editSpot(editedSpot));
+      return editedSpot;
     }
     return response;
-}
+  };
 
 //delete a spot
 export const deleteSpotId = (spotId) => async (dispatch) => {
@@ -152,14 +165,14 @@ const spotsReducer = (state = initialState, action) => {
             newState[action.spot.id] = action.spot;
             return newState;
         }
-        case DELETE_SPOT: {
-            const newState = { ...state };
-            delete newState[action.spotId];
-            return newState;
-        }
         case EDIT_SPOT: {
             const newState = { ...state };
             newState[action.editedSpot.id] = action.editedSpot;
+            return newState;
+        }
+        case DELETE_SPOT: {
+            const newState = { ...state };
+            delete newState[action.spotId];
             return newState;
         }
         default:
