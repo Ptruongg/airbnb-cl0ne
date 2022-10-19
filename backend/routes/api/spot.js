@@ -162,7 +162,7 @@ router.get('/:id', async(req, res) => {
 // })
 
 router.post('/', requireAuth, async(req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const { address, city, state, country, name, description, price } = req.body
     const error = {
         message: "Validation Error",
         statusCode: 400,
@@ -180,12 +180,12 @@ router.post('/', requireAuth, async(req, res) => {
     if(!country) {
         error.errors.country = "Country is required"
     }
-    if(!lat) {
-        error.errors.lat = "Latittude is not valid"
-    }
-    if(!lng) {
-        error.errors.lng = "Longitude is not valid"
-    }
+    // if(!lat) {
+    //     error.errors.lat = "Latittude is not valid"
+    // }
+    // if(!lng) {
+    //     error.errors.lng = "Longitude is not valid"
+    // }
     if(!name) {
         error.errors.name = "Name must be less than 50 characters"
     }
@@ -195,7 +195,7 @@ router.post('/', requireAuth, async(req, res) => {
     if(!price) {
         error.errors.price = "Price per day is required"
     }
-    if ( !address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+    if ( !address || !city || !state || !country || !name || !description || !price) {
         res.status(400).json(error)
     }
 

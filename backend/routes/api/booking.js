@@ -24,8 +24,8 @@ router.get('/', requireAuth, async(req, res) => {
                     'city',
                     'state',
                     'country',
-                    'lat',
-                    'lng',
+                    // 'lat',
+                    // 'lng',
                     'name',
                     'price',
                     'previewImage'
