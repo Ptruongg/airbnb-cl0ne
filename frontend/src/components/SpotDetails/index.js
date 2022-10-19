@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { getAllUsers } from "../../store/user";
 import "./spotDetails.css"
 
 const SpotDetails = () => {
+
     const dispatch = useDispatch();
+    const history = useHistory();
     const { spotId } = useParams();
     const spotState = useSelector((state) => state.spots)
     const userState = useSelector((state) => state)
@@ -22,6 +24,10 @@ const SpotDetails = () => {
         dispatch(getAllUsers());
     }, [dispatch, JSON.stringify(userState)])
 
+    const editSpot = (e) => {
+        e.preventDefault();
+        history.push(`/spots/${spotId}/edit`)
+    }
     return (
         spot && (
             <>
@@ -36,6 +42,9 @@ const SpotDetails = () => {
                     <div className="spotDescription">
                         <div> {spot.description} </div>
                     </div>
+                    <button onClick={editSpot}>
+                        Edit
+                    </button>
                 </div>
             </>
         )

@@ -6,8 +6,8 @@ import "./spotEdit.css";
 
 const SpotEdit = () => {
     const dispatch = useDispatch();
-    const useHistory = useHistory();
-    const { spotId } = useParams();
+    const history = useHistory();
+    let { spotId } = useParams();
     spotId = Number(spotId)
 
     const spot = useSelector((state) => state.spots[spotId])
@@ -68,7 +68,8 @@ const SpotEdit = () => {
         }
         return dispatch(spotActions.editSpotID(post))
             .then(async (res) => {
-                setSubmitSuccess(true);
+                // setSubmitSuccess(true);
+                history.push(`/spots/${spotId}`)
             })
             .catch(async (res) => {
                 const data = await res.json();
@@ -113,7 +114,6 @@ const SpotEdit = () => {
                     </label>
                 </div>
                 <div>
-
                     <label>
                         State
                         <input
@@ -179,15 +179,14 @@ const SpotEdit = () => {
                             type="text"
                             value={previewImage}
                             onChange={updatedPreviewImage}
-                            required
                         />
                     </label>
                 </div>
-                    <div className="buttonContainer">
-                        <button className="confirmEditButton" type="submit" >
-                            Confirm Edit
-                        </button>
-                    </div>
+                <div className="buttonContainer">
+                    <button className="confirmEditButton" type="submit" >
+                        Confirm Edit
+                    </button>
+                </div>
             </form>
         </div>
     );
