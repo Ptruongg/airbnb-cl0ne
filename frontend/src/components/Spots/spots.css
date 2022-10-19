@@ -16,7 +16,7 @@
     border-radius: 33px;
     object-fit: cover;
     margin: 1rem;
-    align-items: center;
+    align-items:flex-start
 }
 
 .spotPrice {
@@ -37,12 +37,12 @@ a:link {
     font-weight: bold;
 }
 /*
-.spotDistance {
+/* .spotDistance {
     display: flex;
     padding-left: 17px;
     font-size: 14px;
     margin-top: 3px;
-} */
+} */ */
 
 .spotPrice {
     display: flex;

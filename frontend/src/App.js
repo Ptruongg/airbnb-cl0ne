@@ -7,7 +7,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfileButton from "./components/Navigation/ProfileButton";
 import DemoUser from "./components/DemoUser";
-import AllSpots from "./components/Spots"
+import AllSpots from "./components/Spots";
+import SpotDetails from "./components/SpotDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           <Route exact path="/">
             <AllSpots />
           </Route>
+          <Route exact path="/spots/:spotId">
+            <SpotDetails />
+            </Route>
         </Switch>
       )}
     </>
