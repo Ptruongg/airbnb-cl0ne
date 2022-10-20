@@ -161,8 +161,9 @@ router.get('/:id', async(req, res) => {
 //     })
 // })
 
+//create a post
 router.post('/', requireAuth, async(req, res) => {
-    const { address, city, state, country, name, description, price } = req.body
+    const { address, city, state, country, name, description, price, previewImage } = req.body
     const error = {
         message: "Validation Error",
         statusCode: 400,
@@ -200,7 +201,7 @@ router.post('/', requireAuth, async(req, res) => {
     }
 
     const spot = await Spot.create({
-        ownerId: req.user.id, address, city, state, country, name, description, price
+        ownerId: req.user.id, address, city, state, country, name, description, price, previewImage
 
     })
     return res.json(spot)
