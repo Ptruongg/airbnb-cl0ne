@@ -128,9 +128,9 @@ export const spotEdit = (spot) => async (dispatch) => {
 
 //delete a spot
 export const deleteSpotId = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`api/spots/${spotId}`, {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: "DELETE",
-        body: JSON.stringify(spotId)
+        // body: JSON.stringify(spotId)
     });
     if (response.ok) {
         const deletedSpot = await response.json();

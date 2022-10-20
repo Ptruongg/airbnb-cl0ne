@@ -51,9 +51,11 @@ const SpotEdit = () => {
         setErrors([]);
 
         let post = {
+            spotId,
             address,
             city,
             state,
+            country,
             name,
             description,
             price,
