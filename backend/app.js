@@ -5,12 +5,11 @@ const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-
 const { environment } = require('./config');
 const isProduction = environment === 'production';
-
 const app = express();
 const routes = require('./routes');
+const { requireAuth } = require('./utils/auth');
 
 app.use(morgan("dev"));
 
@@ -43,6 +42,7 @@ if (!isProduction) {
 
 app.use(routes); // Connect all the routes
 
+// Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
   err.title = "Resource Not Found";
