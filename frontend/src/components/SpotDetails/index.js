@@ -51,7 +51,7 @@ const SpotDetails = () => {
                         <div> {spot.description} </div>
                     </div>
                     {sessionUser && sessionUser.id === spot.ownerId &&
-                        (<div>
+                        (<div className="editDeleteButtons">
                             <button onClick={editSpot}>
                                 Edit
                             </button>

@@ -34,7 +34,6 @@ const SpotEdit = () => {
 
     const errorAlerts = () => {
         const errorNotifications = [];
-
         if (!address) errorNotifications.push("Address is required")
         if (!city) errorNotifications.push("City is required")
         if (!state) errorNotifications.push("State is required")
@@ -44,22 +43,22 @@ const SpotEdit = () => {
         if (!price) errorNotifications.push("Price is required");
 
         return errorNotifications
+
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
 
         let post = {
-            address: address,
-            city: city,
-            state: state,
-            name: name,
-            description: description,
-            price: price,
-            previewImage: previewImage,
+            address,
+            city,
+            state,
+            name,
+            description,
+            price,
+            previewImage,
         };
-
 
         const validationErrors = errorAlerts();
         if (validationErrors.length > 0) {
@@ -67,8 +66,7 @@ const SpotEdit = () => {
             return;
         }
         return dispatch(spotActions.spotEdit(post))
-            .then(async (res) => {
-                // setSubmitSuccess(true);
+            .then(() => {
                 history.push(`/spots/${spotId}`)
             })
             .catch(async (res) => {
@@ -77,7 +75,7 @@ const SpotEdit = () => {
             });
     }
     return (
-        <div className="formContainer">
+        <div className="editFormDiv">
             <div>
                 <h2>Create Your Airbnb</h2>
             </div>
