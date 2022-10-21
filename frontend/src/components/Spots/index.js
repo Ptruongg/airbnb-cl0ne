@@ -18,25 +18,22 @@ const AllSpots = () => {
         getAllSpots(dispatch);
     }, [dispatch, JSON.stringify(spots)]);
 
-    // const getAllSpots = (e) => {
-    //     e.preventDefault();
-    //     dispatch(getAllSpots({...spots}))
-    // }
+
     useEffect(() => {
       dispatch(loadSpotReviewsThunk());
     }, [dispatch, sessionUser]);
 
-    // const starSpot = (spotId) => {
-    //   const allReviewsForThisSpot = reviews.filter((review) => {
-    //     return review.spotId === spotId;
-    //   });
-    //   let allStars = 0;
-    //   allReviewsForThisSpot.forEach((review) => {
-    //     allStars += review.stars;
-    //   });
-    //   const avgStarRating = allStars / allReviewsForThisSpot.length;
-    //   return avgStarRating ? avgStarRating.toFixed(2) : "New";
-    // };
+    const starSpot = (spotId) => {
+      const allReviewsForThisSpot = reviews.filter((review) => {
+        return review.spotId === spotId;
+      });
+      let allStars = 0;
+      allReviewsForThisSpot.forEach((review) => {
+        allStars += review.stars;
+      });
+      const avgStarRating = allStars / allReviewsForThisSpot.length;
+      return avgStarRating ? avgStarRating.toFixed(2) : "New";
+    };
     return (
         <div className="spotsPage">
       <div className="eachSpot">
@@ -57,7 +54,7 @@ const AllSpots = () => {
                         <div className="spotStars">
                           <div className="star">
                             <i className="fa-solid fa-star star-design"></i>
-                            {/* {starSpot(spot.id)} */}
+                            {starSpot(spot.id)}
                           </div>
                         </div>
                       </div>
@@ -72,6 +69,7 @@ const AllSpots = () => {
 
                       <p className="spotPrice"> <b>${spot.price}</b>&nbsp;night</p>
                     </div>
+
                   </div>
                 </div>
               </NavLink>
