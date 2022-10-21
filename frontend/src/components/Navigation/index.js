@@ -29,9 +29,12 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li>
+        <div id='logo'>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
+        </div>
       </li>
+
     </ul>
   );
 }

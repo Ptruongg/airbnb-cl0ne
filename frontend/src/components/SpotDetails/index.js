@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getAllSpots, deleteSpotId } from "../../store/spots";
 import { getAllUsers } from "../../store/user";
-
+import { loadSpotReviewsThunk } from "../../store/reviews";
 import "./spotDetails.css"
 
 const SpotDetails = () => {
@@ -42,7 +42,9 @@ const SpotDetails = () => {
                 <div className="spotIdDetails">
                     <div className="spotTitle">
                         <div> {spot?.name} </div>
-                        <div> {spot?.avgRating}, {spot.city}, {spot.state}, {spot.country} </div>
+                    </div>
+                    <div className="detailLocation">
+                        <div className="detailLocation"> {spot?.avgRating}, {spot.city}, {spot.state}, {spot.country} </div>
                     </div>
                     <div className="spotPictures">
                         <img className="spotImg" src={spot.previewImage}></img>

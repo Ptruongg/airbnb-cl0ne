@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
-// import { loadAllReviewsThunk } from "../../store/reviews";
+import { loadSpotReviewsThunk } from "../../store/reviews";
 import "./spots.css";
 
 // import spot = require("../../../../backend/db/models/spot");
@@ -10,7 +10,9 @@ import "./spots.css";
 const AllSpots = () => {
     const dispatch = useDispatch();
     const spots = useSelector((state) => Object.values(state?.spots));
-
+    const sessionUser = useSelector((state) => state.session.user)
+    const reviews = useSelector((state) => Object.values(state?.reviews));
+    const reviewsString = JSON.stringify(reviews);
     useEffect(() => {
         getAllSpots(dispatch);
     }, [dispatch, JSON.stringify(spots)]);
@@ -19,6 +21,21 @@ const AllSpots = () => {
     //     e.preventDefault();
     //     dispatch(getAllSpots({...spots}))
     // }
+    useEffect(() => {
+      dispatch(loadSpotReviewsThunk());
+    }, [dispatch, reviewsString, sessionUser]);
+
+    const starSpot = (spotId) => {
+      const allReviewsForThisSpot = reviews.filter((review) => {
+        return review.spotId === spotId;
+      });
+      let allStars = 0;
+      allReviewsForThisSpot.forEach((review) => {
+        allStars += review.stars;
+      });
+      const avgStarRating = allStars / allReviewsForThisSpot.length;
+      return avgStarRating ? avgStarRating.toFixed(2) : "New";
+    };
     return (
         <div className="spotsPage">
       <div className="eachSpot">

@@ -7,6 +7,7 @@ const ADD_SPOT = 'spots/ADD_SPOT';
 const EDIT_SPOT = 'spots/EDIT';
 const DELETE_SPOT = 'spots/DELETE';
 
+//actions
 const getSpots = (spots) => {
     return {
         type: GET_ALL_SPOTS,
@@ -112,6 +113,8 @@ export const createSpot = (spot) => async (dispatch) => {
 //     }
 //     return response;
 // }
+
+//edit a spot
 export const spotEdit = (spot) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spot.spotId}`, {
       method: "PUT",
