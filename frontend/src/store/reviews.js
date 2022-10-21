@@ -95,7 +95,7 @@ const reviewsReducer = (state = initialState, action) => {
         case LOAD_ALL_SPOT_REVIEWS: {
             const newState = {};
             action.reviews.forEach(reviews => newState[reviews.id] = reviews);
-            let reviews = {reviews}
+            let reviews = {...newState}
             return reviews
         };
         case POST_REVIEWS: {

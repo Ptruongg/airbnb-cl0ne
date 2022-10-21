@@ -13,6 +13,7 @@ const AllSpots = () => {
     const sessionUser = useSelector((state) => state.session.user)
     const reviews = useSelector((state) => Object.values(state?.reviews));
     const reviewsString = JSON.stringify(reviews);
+    console.log('reviews', reviews)
     useEffect(() => {
         getAllSpots(dispatch);
     }, [dispatch, JSON.stringify(spots)]);
@@ -23,19 +24,19 @@ const AllSpots = () => {
     // }
     useEffect(() => {
       dispatch(loadSpotReviewsThunk());
-    }, [dispatch, reviewsString, sessionUser]);
+    }, [dispatch, sessionUser]);
 
-    const starSpot = (spotId) => {
-      const allReviewsForThisSpot = reviews.filter((review) => {
-        return review.spotId === spotId;
-      });
-      let allStars = 0;
-      allReviewsForThisSpot.forEach((review) => {
-        allStars += review.stars;
-      });
-      const avgStarRating = allStars / allReviewsForThisSpot.length;
-      return avgStarRating ? avgStarRating.toFixed(2) : "New";
-    };
+    // const starSpot = (spotId) => {
+    //   const allReviewsForThisSpot = reviews.filter((review) => {
+    //     return review.spotId === spotId;
+    //   });
+    //   let allStars = 0;
+    //   allReviewsForThisSpot.forEach((review) => {
+    //     allStars += review.stars;
+    //   });
+    //   const avgStarRating = allStars / allReviewsForThisSpot.length;
+    //   return avgStarRating ? avgStarRating.toFixed(2) : "New";
+    // };
     return (
         <div className="spotsPage">
       <div className="eachSpot">
