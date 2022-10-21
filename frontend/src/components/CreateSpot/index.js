@@ -185,4 +185,4 @@ const CreateSpotForm = () => {
 };
 
 
-export default CreateSpotForm
+export default CreateSpotForm;

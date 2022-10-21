@@ -11,6 +11,7 @@ import AllSpots from "./components/Spots";
 import SpotDetails from "./components/SpotDetails";
 import CreateSpotForm from "./components/CreateSpot";
 import SpotEdit from "./components/SpotEdit";
+import CreateReviews from "./components/SpotDetails/createReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId/edit">
             <SpotEdit />
+          </Route>
+          <Route exact path="/spots/:spotId/createReview">
+            <CreateReviews />
           </Route>
           <Route path="*">
             <div className="pageNotFound">404 Page Not Found</div>

@@ -37,11 +37,18 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <Link to="/create" id='dropdown'>
-            Create Your Airbnb
-          </Link>
           <li>{user.username}</li>
           <li>{user.email}</li>
+          <div>
+          <Link to="/create" id='dropdown'>
+            Host Your Home
+          </Link>
+          </div>
+          <div>
+          <Link to="/spots/currentUser/reviews" id="dropdown">
+            My Reviews
+          </Link>
+          </div>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
