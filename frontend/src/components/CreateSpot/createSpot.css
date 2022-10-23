@@ -15,6 +15,9 @@
     display: flex;
     float: left;
     padding: 0px;
+    /* align-items: center; */
+    flex-direction: column;
+
 }
 
 .createSpot {

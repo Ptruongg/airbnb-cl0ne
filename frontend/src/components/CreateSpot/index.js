@@ -107,7 +107,7 @@ const CreateSpotForm = () => {
                     </label>
                     <input
                         type="text"
-                        placeholder="Address"
+                        // placeholder="Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         required
@@ -184,7 +184,7 @@ const CreateSpotForm = () => {
                         />
                     </label>
                 </div>
-                <div className="buttonContainer">
+                <div>
                     <button className="createSpot" type="submit" >
                         Create Spot
                     </button>
