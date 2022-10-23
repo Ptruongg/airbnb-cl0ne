@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import * as reviewActions from "../../store/reviews";
 import "./createReviews.css";
@@ -12,6 +12,7 @@ const CreateReviews = () => {
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
 
   if (submitSuccess) {
     return <Redirect to={`/spots/${spotId}`} />;
