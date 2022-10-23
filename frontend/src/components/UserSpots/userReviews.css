@@ -31,3 +31,19 @@
 .spot-link {
     text-decoration: underline;
 }
+
+.deleteReview {
+    background-color: #ff385c;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

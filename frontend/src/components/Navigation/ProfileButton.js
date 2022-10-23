@@ -44,6 +44,11 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <div>
+            <Link to="/spots/userSpots" id='dropdown'>
+              My Airbnbs
+            </Link>
+          </div>
+          <div>
           <Link to="/create" id='dropdown'>
             Host Your Home
           </Link>
