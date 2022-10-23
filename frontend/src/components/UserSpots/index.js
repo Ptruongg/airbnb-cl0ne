@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { usersSpots } from "../../store/spots";
 import "./userSpots.css";
@@ -9,7 +9,7 @@ const UserSpots = () => {
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
     const spotsList = useSelector((state) => Object.values(state.spots))
-
+    console.log("spots", spotsList)
     const handleClick = (spot) => {
         history.push(`/spots/${spot.id}`)
     }

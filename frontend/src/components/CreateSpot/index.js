@@ -104,14 +104,14 @@ const CreateSpotForm = () => {
                 <div>
                     <label>
                         Address
+                        <input
+                            type="text"
+                            // placeholder="Address"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                        />
                     </label>
-                    <input
-                        type="text"
-                        // placeholder="Address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                    />
                 </div>
                 <div>
 
