@@ -34,12 +34,22 @@ const CreateSpotForm = () => {
         if (!description) errorNotifications.push("Description is required")
         if (!price) errorNotifications.push("Price is required");
 
+
         return errorNotifications
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
 
+        const imgRegex = new RegExp(
+            /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+        );
+        if (previewImage && !imgRegex.test(previewImage)) {
+            setErrors([
+                "Invalid Image Url! URL must start with https:// and contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+            ]);
+            return;
+        };
+        setErrors([]);
         let post = {
             name: name,
             address: address,

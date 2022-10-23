@@ -124,7 +124,7 @@ const SpotsDetail = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="imageDiv">
               <img
                 className="detailImg"
                 src={spot.previewImage}
@@ -183,10 +183,10 @@ const SpotsDetail = () => {
                       Name: {fetchNameById(review.userId)}
                     </div>
                     <div className="reviewContent">Review: {review.review}</div>
-                    <div className="eachReviewStars">
+                    {/* <div className="eachReviewStars">
                       Stars: {review.stars}
                       <i className="fas fa-star"></i>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}
