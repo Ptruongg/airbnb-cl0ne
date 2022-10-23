@@ -41,14 +41,14 @@ function App() {
           <Route exact path="/create">
             <CreateSpotForm />
           </Route>
+          <Route exact path="/spots/userSpots">
+            <UserSpots />
+          </Route>
           <Route exact path="/spots/:spotId">
             <SpotDetails />
           </Route>
           <Route exact path="/spots/:spotId/edit">
             <SpotEdit />
-          </Route>
-          <Route exact path="/spots/userSpots">
-            <UserSpots />
           </Route>
           <Route exact path="/spots/currentUser/reviews">
             <UserReviews />
