@@ -8,6 +8,7 @@
     padding-left: 10px;
     padding-right: 25px;
 }
+
 .spotForm label {
     width: 100%;
     margin: 8px 0;
@@ -15,6 +16,7 @@
     float: left;
     padding: 0px;
 }
+
 .createSpot {
     background-color: #ff385c;
     border: none;
@@ -29,4 +31,4 @@
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
+}

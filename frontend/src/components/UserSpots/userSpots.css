@@ -1,0 +1,38 @@
+.mySpots {
+    border: 1px solid black;
+    display: flex;
+    border-radius: 15px;
+    width: fit-content;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.spotDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    object-fit: cover;
+}
+
+.spotsContainer {
+    display: flex;
+}
+
+.detailSpot {
+    display: flex;
+}
+
+.spot-bottom-div {
+    margin-top: 10px;
+}
+
+.my-spots-div {
+    display: flex;
+    justify-content: center;
+}

@@ -13,17 +13,15 @@ const AllSpots = () => {
     const sessionUser = useSelector((state) => state.session.user)
     const reviews = useSelector((state) => Object.values(state?.reviews));
     const reviewsString = JSON.stringify(reviews);
+    console.log('reviews', reviews)
     useEffect(() => {
         getAllSpots(dispatch);
     }, [dispatch, JSON.stringify(spots)]);
 
-    // const getAllSpots = (e) => {
-    //     e.preventDefault();
-    //     dispatch(getAllSpots({...spots}))
-    // }
+
     useEffect(() => {
       dispatch(loadSpotReviewsThunk());
-    }, [dispatch, reviewsString, sessionUser]);
+    }, [dispatch, sessionUser]);
 
     const starSpot = (spotId) => {
       const allReviewsForThisSpot = reviews.filter((review) => {
@@ -56,7 +54,7 @@ const AllSpots = () => {
                         <div className="spotStars">
                           <div className="star">
                             <i className="fa-solid fa-star star-design"></i>
-                            {/* {starSpot(spot.id)} */}
+                            {starSpot(spot.id)}
                           </div>
                         </div>
                       </div>
@@ -71,6 +69,7 @@ const AllSpots = () => {
 
                       <p className="spotPrice"> <b>${spot.price}</b>&nbsp;night</p>
                     </div>
+
                   </div>
                 </div>
               </NavLink>

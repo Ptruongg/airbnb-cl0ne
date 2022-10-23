@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./Login.css";
-import DemoUser from "../DemoUser"
+import DemoUser from "../DemoUser";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -57,6 +57,17 @@ function LoginForm() {
         <button className="loginButton" type="submit">
           Log In
         </button>
+        <button
+          type="submit"
+          className="demo-login-form-button"
+          onClick={() => {
+            setCredential("demo@user.io");
+            setPassword("password");
+          }}
+        >
+          Demo User
+        </button>
+          {/* <DemoUser /> */}
       </form>
     </div>
   );

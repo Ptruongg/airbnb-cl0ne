@@ -5,37 +5,43 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <div>
-        <ProfileButton user={sessionUser} />
-      </div>
+      <>
+        <div id='navBarRight'>
+          <ProfileButton user={sessionUser} />
+        </div>
+      </>
     );
   } else {
     sessionLinks = (
       <>
-      <div>
-        <LoginFormModal />
-      </div>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <div id='navBarRightLoad'>
+          <div id='loginButtonDiv'>
+            <LoginFormModal />
+            <div><NavLink id='signUp' to="/signup">Sign Up</NavLink></div>
+          </div>
+        </div>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <div id='logo'>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-        </div>
-      </li>
+    <nav>
+      <div id="home">
 
-    </ul>
+        <div id='logo'>
+          <NavLink exact to="/">
+            <img src="https://hospitalitydesign.com/wp-content/uploads/Airbnb-logo.png"></img>
+          </NavLink>
+        </div>
+          {isLoaded && sessionLinks}
+      </div>
+    </nav>
   );
 }
 
