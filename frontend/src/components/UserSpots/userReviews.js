@@ -13,16 +13,18 @@ function UserReviews() {
   const reviews = useSelector((state) => {
     return Object.values(state.reviews);
   });
+  console.log('json string', JSON.stringify(reviews))
   useEffect(() => {
     dispatch(getAllUserReviews()).then(() => setIsloaded(true));
-  }, [dispatch]);
+  }, [dispatch, JSON.stringify(reviews)]);
 
   const handleDeleteClick = (reviewId) => async (e) => {
     e.preventDefault();
     const response = dispatch(deleteReviewThunk(reviewId));
-    if (response) {
-      history.push(`/spots/currentUser/reviews`);
-    }
+    dispatch(getAllUserReviews())
+    // if (response) {
+    //   history.push(`/spots/currentUser/reviews`);
+    // }
   };
 
   return (
@@ -37,7 +39,7 @@ function UserReviews() {
               <div>Stars: {review.stars}</div>
               <NavLink className="spot-link" to={`/spots/${review.spotId}`}>Link to Spot</NavLink>
               <div>
-                <button className="deleteReview" onClick={handleDeleteClick(review.reviewId)}>
+                <button className="deleteReview" onClick={handleDeleteClick(review.id)}>
                   Delete this Review
                 </button>
               </div>
