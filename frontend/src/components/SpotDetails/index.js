@@ -64,13 +64,13 @@ const SpotsDetail = () => {
     });
     const avgStarRating = allStars / allReviewsForThisSpot.length;
 
-    const userReviewForThisSpot = reviews.filter((review) => {
-      if (!sessionUser) {
-        return [];
-      } else {
-        return review.userId === sessionUser.id && review.spotId === spotId;
-      }
-    });
+    // const userReviewForThisSpot = reviews.filter((review) => {
+    //   if (!sessionUser) {
+    //     return [];
+    //   } else {
+    //     return review.userId === sessionUser.id && review.spotId === spotId;
+    //   }
+    // });
 
     const fetchNameById = (userId) => {
       if (!users[userId]) {
@@ -169,11 +169,10 @@ const SpotsDetail = () => {
                   {allReviewsForThisSpot.length} Review(s)
                 </div>
                 <div>
-                  {!userReviewForThisSpot.length && (
                     <button className="reviewButton" onClick={handleCreateReview}>
                       Create Review
                     </button>
-                  )}
+
                 </div>
               </div>
 

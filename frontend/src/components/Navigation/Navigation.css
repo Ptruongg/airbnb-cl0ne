@@ -11,14 +11,15 @@
     border-radius: 20px;
     height: 40px;
     width: 80px;
-    padding-left: 10px;
-    font-size: 15px;
+    padding-left: 15px;
     display: flex;
+    justify-content: space-around;
+    font-size: 15px;
     text-align: start;
-    justify-content: space-between;
     align-items: center;
     border: 1px solid #dddddd;
     cursor: pointer;
+
 }
 
 #demoUser {
@@ -72,6 +73,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 0.5rem;
+
 }
 
 .nav:hover {

@@ -40,8 +40,8 @@ const UserSpots = () => {
                                     <div className="spot-bottom-div">
                                         {spot.city}, {spot.state}
                                     </div>
-                                    {/* <p className="detailDescription">{spot.description}</p> */}
-                                    {/* <p className="detailPrice">${spot.price} night</p> */}
+                                    <p className="detailDescription">{spot.description}</p>
+                                    <p className="detailPrice">${spot.price} night</p>
                                 </div>
                             </div>
                         ))}

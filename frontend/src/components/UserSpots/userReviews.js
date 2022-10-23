@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getUserReviews } from "../../store/reviews";
-import { deleteReview } from "../../store/reviews";
+import { getAllUserReviews } from "../../store/reviews";
+import { deleteReviewThunk } from "../../store/reviews";
 import "./userReviews.css";
 
 function UserReviews() {
@@ -14,12 +14,12 @@ function UserReviews() {
     return Object.values(state.reviews);
   });
   useEffect(() => {
-    dispatch(getUserReviews()).then(() => setIsloaded(true));
+    dispatch(getAllUserReviews()).then(() => setIsloaded(true));
   }, [dispatch]);
 
   const handleDeleteClick = (reviewId) => async (e) => {
     e.preventDefault();
-    const response = dispatch(deleteReview(reviewId));
+    const response = dispatch(deleteReviewThunk(reviewId));
     if (response) {
       history.push(`/spots/currentUser/reviews`);
     }
@@ -37,7 +37,7 @@ function UserReviews() {
               <div>Stars: {review.stars}</div>
               <NavLink className="spot-link" to={`/spots/${review.spotId}`}>Link to Spot</NavLink>
               <div>
-                <button className="deleteReview" onClick={handleDeleteClick(review.id)}>
+                <button className="deleteReview" onClick={handleDeleteClick(review.reviewId)}>
                   Delete this Review
                 </button>
               </div>

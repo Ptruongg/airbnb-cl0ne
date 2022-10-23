@@ -12,7 +12,7 @@ import SpotDetails from "./components/SpotDetails";
 import CreateSpotForm from "./components/CreateSpot";
 import SpotEdit from "./components/SpotEdit";
 import CreateReviews from "./components/SpotDetails/createReviews";
-// import UserReviews from "./components/UserSpot/UserReviews"
+import UserReviews from "./components/UserSpots/userReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,9 +46,9 @@ function App() {
           <Route exact path="/spots/:spotId/edit">
             <SpotEdit />
           </Route>
-          {/* <Route exact path="/spots/currentUser/reviews">
+          <Route exact path="/spots/currentUser/reviews">
             <UserReviews />
-          </Route> */}
+          </Route>
           <Route exact path="/spots/:spotId/createReview">
             <CreateReviews />
           </Route>
