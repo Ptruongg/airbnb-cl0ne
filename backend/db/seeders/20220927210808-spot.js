@@ -49,7 +49,7 @@ module.exports = {
         // "lat": 37.7645556,
         // "lng": -122.4730331,
         "name": "Hola",
-        "description": "This beautiful, pet- friendly condo has a luxury contemporary vibe with two bedrooms and two bathrooms. Perfect for any season when visiting Mammoth. This condo is located walking distance to Canyon Lodge at Mammoth Mountain Ski Area, right on the Ski Back Trail. During the summer, you can visit the Lakes Basin, or a day trip to Yosemite. Large flat screen tv, fully equipped kitchen, luxury beds, plus a common area game room, pool and hot tub. Make this your perfect Mammoth getaway!",
+        "description": "This beautiful, pet- friendly condo has a luxury contemporary vibe with two bedrooms and two bathrooms. Perfect for any season when visiting Mammoth. This condo is located walking distance to Canyon Lodge at Mammoth Mountain Ski Area, right on the Ski Back Trail. During the summer, you can visit the Lakes Basin, or a day trip to Yosemite. Large flat screen tv, fully equipped kitchen, luxury beds, plus a common area game room, pool and hot tub.",
         "price": 3565,
         "avgRating": 3.5,
         "previewImage": "https://www.technewstoday.com/wp-content/uploads/2022/03/haven-1.jpg"
@@ -63,7 +63,7 @@ module.exports = {
         // "lat": 37.7645556,
         // "lng": -122.4734331,
         "name": "Watch this",
-        "description": "Located right in the heart of downtown, and only 32 miles from the Arch Rock Entrance to Yosemite! Built in 1938 with original wood floors and lots of stories. Enjoy this private and peaceful Bunglow tucked quietly off of the historic downtown main street of Mariposa. With a giant King sized bed, fully accessible bathroom 'oasis', full kitchen, private patio, and sleeper sofa- this vintage hideaway beckons you to relax and unwind after a full day of Yosemite/Mariposa adventures..",
+        "description": "Located right in the heart of downtown, and only 32 miles from the Arch Rock Entrance to Yosemite! Built in 1938 with original wood floors and lots of stories. Enjoy this private and peaceful Bunglow tucked quietly off of the historic downtown main street of Mariposa. With a giant King sized bed, fully accessible bathroom 'oasis', full kitchen, private patio, and sleeper sofa.",
         "price": 9005,
         "avgRating": 5.0,
         "previewImage": "https://www.mandatory.gg/wp-content/uploads/news/2020/06/ascent/valorant-map-ascent-centre-768x432.jpg"
@@ -77,7 +77,7 @@ module.exports = {
         // "lat": 37.7645556,
         // "lng": -122.478331,
         "name": "Bill Graham Civic Auditorium",
-        "description": "This breathtaking, cozy retreat nestled in the woods of beautiful Alpine County offers the quintessential cabin experience with the added benefit of stunning mountain views and incredible luxuries! Sip your morning coffee on the vast deck before setting out for an invigorating day of hiking, fishing, or skiing. Enjoy a movie or foosball game, then fire up the grill for a backyard barbecue on the private patio under the stars. We can’t wait to welcome you for your next family or group getaway!",
+        "description": "This breathtaking, cozy retreat nestled in the woods of beautiful Alpine County offers the quintessential cabin experience with the added benefit of stunning mountain views and incredible luxuries! Sip your morning coffee on the vast deck before setting out for an invigorating day of hiking, fishing, or skiing. Enjoy a movie or foosball game, then fire up the grill for a backyard barbecue on the private patio under the stars.",
         "price": 1000,
         "avgRating": 0.05,
         "previewImage": "https://media-cdn.tripadvisor.com/media/photo-s/0f/67/6c/17/bill-graham-civic-auditorium.jpg"
@@ -105,7 +105,7 @@ module.exports = {
         // "lat": 37.7645556,
         // "lng": -122.478331,
         "name": "Lake Tahoe Chalet",
-        "description": "Ready for the ultimate luxury home that also happens to be dog friendly? Owner loves dogs! Bring the whole family to his 4 bedroom, 3 bathroom fully fenced home that sleeps 10 total. This home is more like a manor than your typical Tahoe cabin. Situation in the exclusive Zephyr Cove Heights neighborhood, you are close to the lake, casinos, Heavenly Ski Resort and everything the South shore of Tahoe has to offer. The owners of this home gutted it when they bought it so everything is brand new and high end. The kitchen is fully stocked and this home pretty much has everything you’d ever need.",
+        "description": "Ready for the ultimate luxury home that also happens to be dog friendly? Owner loves dogs! Bring the whole family to his 4 bedroom, 3 bathroom fully fenced home that sleeps 10 total. This home is more like a manor than your typical Tahoe cabin. Situation in the exclusive Zephyr Cove Heights neighborhood, you are close to the lake, casinos, Heavenly Ski Resort and everything the South shore of Tahoe has to offer.",
         "price": 1250,
         "avgRating": 4.65,
         "previewImage": "https://a0.muscache.com/im/pictures/fe13b749-ad2b-45fb-af19-a91e81250dcb.jpg?im_w=1200"
@@ -119,7 +119,7 @@ module.exports = {
         // "lat": 37.7645556,
         // "lng": -122.478331,
         "name": "Maribelle",
-        "description": "This breathtaking, cozy retreat nestled in the woods of beautiful Alpine County offers the quintessential cabin experience with the added benefit of stunning mountain views and incredible luxuries! Sip your morning coffee on the vast deck before setting out for an invigorating day of hiking, fishing, or skiing. Enjoy a movie or foosball game, then fire up the grill for a backyard barbecue on the private patio under the stars. We can’t wait to welcome you for your next family or group getaway!",
+        "description": "Our cozy cabin is close to Lake, Heavenly, Downtown and Trails. You'll love this cabin because of the coziness, the views, the location, the people, the biking/hiking/running/walking trails, proximity to the lake, heavenly and downtown.",
         "price": 875,
         "avgRating": 5.0,
         "previewImage": "https://a0.muscache.com/im/pictures/prohost-api/Hosting-53153894/original/36abaefb-86c5-409e-ad25-7fbdf80fd29d.jpeg?im_w=1200"
@@ -133,7 +133,7 @@ module.exports = {
         // "lat": 37.7645556,
         // "lng": -122.478331,
         "name": "Bill Graham Civic Auditorium",
-        "description": "This breathtaking, cozy retreat nestled in the woods of beautiful Alpine County offers the quintessential cabin experience with the added benefit of stunning mountain views and incredible luxuries! Sip your morning coffee on the vast deck before setting out for an invigorating day of hiking, fishing, or skiing. Enjoy a movie or foosball game, then fire up the grill for a backyard barbecue on the private patio under the stars. We can’t wait to welcome you for your next family or group getaway!",
+        "description": "We have been listing the Mushroom Dome Cabin with airbnb since July '09 and have had the most reservations of any of their listings. There is a reason we are so popular: the cabin is near a Redwood Grove, at night, there is hardly any sound here - maybe  crickets. It is a Paradise here: a great place to unwind & restore.",
         "price": 785,
         "avgRating": 3.76,
         "previewImage": "https://media-cdn.tripadvisor.com/media/photo-s/0f/67/6c/17/bill-graham-civic-auditorium.jpg"
@@ -147,7 +147,7 @@ module.exports = {
         // "lat": 37.7645556,
         // "lng": -122.478331,
         "name": "Pearl Heights",
-        "description": "A-Frame gem with Lake rights tucked away in the trees of Lake Arrowhead on an acre of land. Newly renovated with modern features and stylish decor. Close to the lake, hiking, restaurants & shopping areas. Ideal location for all your Summer & Winter adventures. Cozy up by the wood burning fireplace in winter or open the doors to the deck in summer--w AC. This cabin is a soulful 5-star resort level top to bottom.Our Airbnb manager or myself will be avail if you need assistance during your stay.",
+        "description": "A-Frame gem with Lake rights tucked away in the trees of Lake Arrowhead on an acre of land. Newly renovated with modern features and stylish decor. Close to the lake, hiking, restaurants & shopping areas. Ideal location for all your Summer & Winter adventures. Cozy up by the wood burning fireplace in winter or open the doors to the deck in summer--w AC.",
         "price": 100000,
         "avgRating": 5.00,
         "previewImage": "https://a0.muscache.com/im/pictures/miso/Hosting-47818404/original/54edef36-4b46-44c0-964a-031bbfb930f9.jpeg?im_w=1200"
