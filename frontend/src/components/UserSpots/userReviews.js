@@ -13,7 +13,6 @@ function UserReviews() {
   const reviews = useSelector((state) => {
     return Object.values(state.reviews);
   });
-  console.log('json string', JSON.stringify(reviews))
   useEffect(() => {
     dispatch(getAllUserReviews()).then(() => setIsloaded(true));
   }, [dispatch, JSON.stringify(reviews)]);

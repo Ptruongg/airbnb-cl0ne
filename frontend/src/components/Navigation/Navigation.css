@@ -161,3 +161,14 @@
 .demo-btn {
     cursor: pointer;
 }
+
+.aboutMe {
+    display: flex
+}
+.name {
+    margin-left: 10px;
+}
+.github {
+    color: #ff385c;
+    cursor: pointer;
+}

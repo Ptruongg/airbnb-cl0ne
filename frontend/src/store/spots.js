@@ -77,7 +77,6 @@ export const usersSpots = () => async (dispatch) => {
 //get spot details
 export const spotDetails = (spot) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spot.id}`)
-    console.log('this is the response', response)
     if (response.ok) {
         const spotdeats = await response.json();
         dispatch(getSpotId(spotdeats));

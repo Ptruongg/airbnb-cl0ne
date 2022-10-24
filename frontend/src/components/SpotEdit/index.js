@@ -45,6 +45,10 @@ const SpotEdit = () => {
         return errorNotifications
 
     }
+    const cancelButton = (e) => {
+        e.preventDefault();
+        history.push(`/spots/${spotId}`)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -79,7 +83,7 @@ const SpotEdit = () => {
     return (
         <div className="editFormDiv">
             <div>
-                <h2>Create Your Airbnb</h2>
+                <h2>Edit Your Airbnb</h2>
             </div>
             <form className="spotForm" onSubmit={handleSubmit}>
                 {errors ?? (
@@ -92,14 +96,14 @@ const SpotEdit = () => {
                 <div>
                     <label>
                         Address
+                        <input
+                            type="text"
+                            // placeholder="Address"
+                            value={address}
+                            onChange={updatedAddress}
+                            required
+                        />
                     </label>
-                    <input
-                        type="text"
-                        placeholder="Address"
-                        value={address}
-                        onChange={updatedAddress}
-                        required
-                    />
                 </div>
                 <div>
 
@@ -185,6 +189,9 @@ const SpotEdit = () => {
                 <div className="buttonContainer">
                     <button className="confirmEditButton" type="submit" >
                         Confirm Edit
+                    </button>
+                    <button className="cancelButton" onClick={cancelButton} >
+                        Cancel
                     </button>
                 </div>
             </form>

@@ -7,7 +7,9 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-
+  const newTab = (url) => {
+    window.open(url, '_blank', 'noopener, noreferrer')
+  }
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -38,6 +40,14 @@ function Navigation({ isLoaded }) {
           <NavLink exact to="/">
             <img src="https://hospitalitydesign.com/wp-content/uploads/Airbnb-logo.png"></img>
           </NavLink>
+        </div>
+        <div className='aboutMe'>
+          <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>
+            Github
+          </div>
+          <div className='name'>
+            Developed by Philip Truong
+            </div>
         </div>
           {isLoaded && sessionLinks}
       </div>

@@ -12,8 +12,7 @@ const AllSpots = () => {
     const spots = useSelector((state) => Object.values(state?.spots));
     const sessionUser = useSelector((state) => state.session.user)
     const reviews = useSelector((state) => Object.values(state?.reviews));
-    const reviewsString = JSON.stringify(reviews);
-    console.log('reviews', reviews)
+    // const reviewsString = JSON.stringify(reviews)
     useEffect(() => {
         getAllSpots(dispatch);
     }, [dispatch, JSON.stringify(spots)]);

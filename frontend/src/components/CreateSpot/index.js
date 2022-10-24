@@ -166,6 +166,8 @@ const CreateSpotForm = () => {
                         Price
                         <input
                             type="number"
+                            min = {1}
+                            max = {10000}
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             required
