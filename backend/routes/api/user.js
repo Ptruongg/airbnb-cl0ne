@@ -60,7 +60,7 @@ router.post('/sign-up', validateSignup, async (req, res) => {
       }
 
       if(errors.length) {
-        res.status(403).json(errors)
+        return res.status(403).json(errors)
       }
 
       const user = await User.signup({ email, username, password, firstName, lastName });
