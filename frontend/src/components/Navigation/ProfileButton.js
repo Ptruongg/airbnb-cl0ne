@@ -41,8 +41,8 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <div id="menu">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          <div className="userName">{user.username}</div>
+          <div className="email">{user.email}</div>
           <div>
             <Link to="/spots/userSpots" id='dropdown'>
               My Airbnbs

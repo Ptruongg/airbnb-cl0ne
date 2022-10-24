@@ -21,9 +21,9 @@ function UserReviews() {
     e.preventDefault();
     const response = dispatch(deleteReviewThunk(reviewId));
     dispatch(getAllUserReviews())
-    // if (response) {
-    //   history.push(`/spots/currentUser/reviews`);
-    // }
+    if (response) {
+      history.push(`/spots/currentUser/reviews`);
+    }
   };
 
 
