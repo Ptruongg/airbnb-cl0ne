@@ -171,4 +171,5 @@
 .github {
     color: #ff385c;
     cursor: pointer;
+    justify-content: center;
 }
