@@ -10,8 +10,34 @@ const spot = require('../../db/models/spot');
 const router = express.Router();
 const { Op } = require('sequelize')
 
+//get all bookings
+router.get("/", requireAuth, async (req, res) => {
+  const bookings = await Booking.findAll({
+    include: [
+      {
+        model: Spot,
+        attributes: [
+          "id",
+          "ownerId",
+          "address",
+          "city",
+          "state",
+          "country",
+          "lat",
+          "lng",
+          "name",
+          "price",
+          "previewImage",
+        ],
+      },
+    ],
+    // where: { userId: req.user.id },
+  });
+  res.json(bookings);
+});
+
 //get all of current user's bookings
-router.get('/', requireAuth, async(req, res) => {
+router.get('/current-user-bookings', requireAuth, async(req, res) => {
     const { id } = req.user;
     const bookings = await Booking.findAll({
         include: [
