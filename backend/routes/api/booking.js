@@ -38,7 +38,7 @@ router.get("/", requireAuth, async (req, res) => {
 
 //get all of current user's bookings
 router.get('/current-user-bookings', requireAuth, async(req, res) => {
-    const { id } = req.user;
+    // const { id } = req.user;
     const bookings = await Booking.findAll({
         include: [
             {
@@ -58,7 +58,7 @@ router.get('/current-user-bookings', requireAuth, async(req, res) => {
                 ]
             }
         ],
-        where: {userId: id}
+        where: {userId: req.user.id}
     })
     return res.json(bookings)
 })
