@@ -144,6 +144,7 @@
     font-size: 18px;
     height: 70px;
     gap: 10px;
+
 }
 
 #logo {
@@ -151,7 +152,7 @@
     width: 20%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: margin-left
 }
 
 #logo>a>img {
@@ -172,4 +173,5 @@
     color: #ff385c;
     cursor: pointer;
     justify-content: center;
+    align-items: center;
 }

@@ -38,7 +38,7 @@ function Navigation({ isLoaded }) {
 
         <div id='logo'>
           <NavLink exact to="/">
-            <img src="https://hospitalitydesign.com/wp-content/uploads/Airbnb-logo.png"></img>
+            <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png"></img>
           </NavLink>
         </div>
         <div className='aboutMe'>

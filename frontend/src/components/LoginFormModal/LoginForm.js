@@ -22,7 +22,7 @@ function LoginForm() {
   };
 
   return (
-        <div className="modal">
+    <div className="modal">
       <div>
         <h2 className="welcomeContainer"> Airbnb Cl0ne Login </h2>
       </div>
@@ -67,7 +67,7 @@ function LoginForm() {
         >
           Demo User
         </button>
-          {/* <DemoUser /> */}
+        {/* <DemoUser /> */}
       </form>
     </div>
   );
