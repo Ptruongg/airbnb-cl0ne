@@ -21,6 +21,12 @@
     cursor: pointer;
 
 }
+.searchBar {
+
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
 
 #demoUser {
     background-color: #ff385c;

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteSpotId, getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews"
 import { getAllUsers } from "../../store/user";
+import CreateBookingForm from "../Bookings/createBookings";
 import "./spotDetails.css"
 
 const SpotsDetail = () => {
@@ -143,6 +144,13 @@ const SpotsDetail = () => {
               <div className="superhost">
                 <i className="fa-solid fa-award"></i> {spotsUser[0]?.firstName}{" "}
                 is a Superhost
+              </div>
+              <div>
+                <CreateBookingForm
+                  spot={spot}
+                  star={avgStarRating}
+                  review={allReviewsForThisSpot}
+                />
               </div>
               <div className="experience">
                 Superhosts are experienced, highly rated hosts who are committed

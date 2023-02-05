@@ -14,6 +14,9 @@ import SpotEdit from "./components/SpotEdit";
 import CreateReviews from "./components/SpotDetails/createReviews";
 import UserReviews from "./components/UserSpots/userReviews";
 import UserSpots from "./components/UserSpots";
+import BookingPage from "./components/Bookings/BookingPage";
+import MyBookings from "./components/Bookings/myBookings";
+import Search from "./components/Search/index"
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +41,12 @@ function App() {
           <Route exact path="/">
             <AllSpots />
           </Route>
+          <Route exact path="/currentUser/bookings">
+            <MyBookings />
+          </Route>
+          <Route exact path="/bookings/:bookingId">
+            <BookingPage />
+          </Route>
           <Route exact path="/create">
             <CreateSpotForm />
           </Route>
@@ -55,6 +64,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId/createReview">
             <CreateReviews />
+          </Route>
+          <Route path="/search">
+            <Search />
           </Route>
           <Route path="*">
             <div className="pageNotFound">404 Page Not Found</div>

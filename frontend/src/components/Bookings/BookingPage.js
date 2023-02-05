@@ -8,8 +8,8 @@ const BookingPage = () => {
     const { bookingId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const sessionUser = useSelector((state) => state.session.user);
-    const bookings = useSelector((state) => Object.values(state.bookings));
+    // const sessionUser = useSelector((state) => state.session.user);
+    const bookings = useSelector((state) => Object.values(state?.bookings));
     const booking = bookings.find((booking) => booking.id === Number(bookingId))
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -23,7 +23,7 @@ const BookingPage = () => {
     }, [dispatch])
 
     return (
-        <div className="BookingsContainer">
+        <div className="bookingsContainer">
             <div className="congrats">Your reservation is confirmed</div>
             <div className="book-city">You're going to {booking?.Spot?.city}!</div>
             <img className="bookingImg" src={booking?.Spot?.previewImage}></img>

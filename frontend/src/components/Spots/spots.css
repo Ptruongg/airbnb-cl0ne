@@ -37,7 +37,15 @@ a:link {
     font-size: 15px;
     font-weight: bold;
 }
-
+.spotName {
+    padding-left: 17px;
+    padding-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: bold;
+}
 .spotDistance {
     display: flex;
     padding-left: 17px;
