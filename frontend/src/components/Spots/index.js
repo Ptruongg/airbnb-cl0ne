@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews";
+import Search from "../Search"
 import "./spots.css";
 
 // import spot = require("../../../../backend/db/models/spot");
@@ -35,6 +36,9 @@ const AllSpots = () => {
   };
   return (
     <div className="spotsPage">
+      <div className='searchBar'>
+          <Search />
+        </div>
       <div className="eachSpot">
         {spots &&
           spots.map((spot) => (

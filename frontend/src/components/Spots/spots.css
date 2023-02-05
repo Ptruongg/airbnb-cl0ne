@@ -6,7 +6,9 @@
     height: 100%;
 
 }
-
+.searchBar {
+    margin-top: 5px;
+}
 .spotImg {
     flex-wrap: wrap;
     float: left;
