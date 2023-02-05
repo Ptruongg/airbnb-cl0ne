@@ -31,23 +31,24 @@ export default function Search() {
     };
 
     return (
-        <div className="searchResults">
-            <div>
+        <div className="searchDiv">
+            <div className="searchBar">
                 <input
-                    style={{ height: 20, borderColor: "gray", borderWidth: 1 }}
+                    style={{ height: 20, borderColor: "gray", borderWidth: 1, height: "30px", width: "500px" }}
                     icon="search"
                     placeholder="Search by City..."
                     onChange={(e) => searchItems(e.target.value)}
+                    className="inputBox"
                 />
             </div>
-            <div>
+            <div className="resultsSearch">
                 {searchInput.length > 1 ? (
                     filteredResults.map((item) => {
                         return (
                             <div className="results" key={item.id}>
                                 <NavLink to={`/spots/${item.id}`}>
-                                    <div>{item.city}</div>
-                                    <div>{item.name}</div>
+                                    <div className="resultsName">{item.name}</div>
+                                    <div className="resultsCity" >{item.city}</div>
                                     <img className="search-img" src={item.previewImage}></img>
                                 </NavLink>
                             </div>

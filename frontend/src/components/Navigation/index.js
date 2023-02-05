@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -8,6 +8,8 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
+  const history = useHistory();
+
   const newTab = (url) => {
     window.open(url, '_blank', 'noopener, noreferrer')
   }
@@ -33,17 +35,14 @@ function Navigation({ isLoaded }) {
     );
   }
 
+
   return (
     <nav>
       <div id="home">
-
         <div id='logo'>
-          <NavLink exact to="/">
-            <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png"></img>
+          <NavLink to="/">
+            <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png" ></img>
           </NavLink>
-        </div>
-        <div className='searchBar'>
-          <Search />
         </div>
         <div className='aboutMe'>
           <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>
@@ -51,9 +50,9 @@ function Navigation({ isLoaded }) {
           </div>
           <div className='name'>
             Developed by Philip Truong
-            </div>
+          </div>
         </div>
-          {isLoaded && sessionLinks}
+        {isLoaded && sessionLinks}
       </div>
     </nav>
   );
