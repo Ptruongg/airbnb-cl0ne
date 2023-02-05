@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import Search from '../Search';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -40,6 +41,9 @@ function Navigation({ isLoaded }) {
           <NavLink exact to="/">
             <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png"></img>
           </NavLink>
+        </div>
+        <div className='searchBar'>
+          <Search />
         </div>
         <div className='aboutMe'>
           <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>

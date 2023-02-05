@@ -55,7 +55,7 @@ export const getAllBookings = () => async (dispatch) => {
 }
 
 export const getUserBookings = () => async (dispatch) => {
-    const response = await csrfFetch("/api/bookings/current-user");
+    const response = await csrfFetch(`/api/bookings/current-user-bookings`);
     if(response.ok) {
         const booking = await response.json();
         dispatch(getUserBookingsAction(booking))

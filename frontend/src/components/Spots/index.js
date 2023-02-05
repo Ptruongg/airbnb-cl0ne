@@ -50,6 +50,9 @@ const AllSpots = () => {
                       }}></img>
                     </div>
                   )}
+                  <div className="spotName">
+                    {spot.name}
+                  </div>
                   <div className="roomDetails">
                     <div className="roomData">
                       <div className="spotLocation">

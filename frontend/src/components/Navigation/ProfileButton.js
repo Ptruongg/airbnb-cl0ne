@@ -41,8 +41,8 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <div id="menu">
-          <div className="userName">{user.username}</div>
-          <div className="email">{user.email}</div>
+          {/* <div className="userName">{user.username}</div>
+          <div className="email">{user.email}</div> */}
           <div>
             <Link to="/spots/userSpots" id='dropdown'>
               My Airbnbs
@@ -52,6 +52,11 @@ function ProfileButton({ user }) {
           <Link to="/create" id='dropdown'>
             Host Your Home
           </Link>
+          </div>
+          <div>
+            <Link to="/currentUser/bookings" id='dropdown'>
+              My Bookings
+            </Link>
           </div>
           <div>
           <Link to="/spots/currentUser/reviews" id="dropdown">

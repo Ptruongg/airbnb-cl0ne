@@ -1,0 +1,10 @@
+.searchResults {
+    display: grid;
+    background-color: white;
+    position: fixed;
+    width: 100px;
+}
+
+.search-img {
+    width: 100px
+}
