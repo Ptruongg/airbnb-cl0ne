@@ -102,13 +102,13 @@ const initialState = {};
 const bookingsReducer = (state = initialState, action) => {
     switch(action.type) {
         case GET_ALL_BOOKINGS: {
-            const newState = {};
+            let newState = {};
             action.bookings.forEach((booking) => (newState[booking.id] = booking));
             let bookings = {...newState}
             return bookings
         }
         case GET_USER_BOOKINGS: {
-            const newState = {};
+            let newState = {};
             newState = action.payload;
             return newState;
         }
@@ -118,12 +118,12 @@ const bookingsReducer = (state = initialState, action) => {
             return newState;
         }
         case EDIT_BOOKING: {
-            const newState = { ...state };
+            let newState = { ...state };
             newState[action.booking.id] = action.booking;
             return newState
         }
         case DELETE_BOOKING: {
-            const newState = { ...state };
+            let newState = { ...state };
             delete newState[action.id];
             return newState;
         }
