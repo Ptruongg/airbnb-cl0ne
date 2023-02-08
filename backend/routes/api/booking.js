@@ -94,65 +94,76 @@ router.get("/:spotId", requireAuth, async (req, res) => {
 });
 
 //create a booking from a spot based on the spot's id
-router.post('/:spotId', requireAuth, async(req, res) => {
-    const spotId = req.params.spotId;
-    bookingParams = req.body
-    bookingParams.spotId = spotId;
-    bookingParams.userId = req.user.id;
+router.post('/:spotId', requireAuth, async (req, res, next) => {
+  const spot = await Spot.findByPk(req.params.spotId)
 
-    let currentSpot = await Spot.findByPk(spotId)
-
-    if(bookingParams.startDate >= bookingParams.endDate) {
-        res.json(
-            {
-                "message": "Validation error",
-                "statusCode": 400,
-                "errors": {
-                  "endDate": "endDate cannot be on or before startDate"
-                }
-            }
-        )
-    }
-    if(!currentSpot) {
-        res.json(
-            {
-                "message": "Spot couldn't be found",
-                "statusCode": 404
-            }
-        )
-    }
-    let currentBookings = await Booking.findAll({
-        where: {
-            spotId: spotId,
-            [Op.and]: [
-              {
-                startDate: {
-                  [Op.lte]: bookingParams.endDate,
-                },
-              },
-              {
-                endDate: {
-                  [Op.gte]: bookingParams.startDate,
-                },
-              },
-            ],
-        },
+  if (!spot) {
+    return res.status(404).json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
     })
-    if(currentBookings.length) {
-        res.json(
-            {
-                "message": "Sorry, this spot is already booked for the specified dates",
-                "statusCode": 403,
-                "errors": {
-                  "startDate": "Start date conflicts with an existing booking",
-                  "endDate": "End date conflicts with an existing booking"
-                }
-            }
-        )
+  }
+  const err = {
+    "message": "Validation error",
+    "statusCode": 400,
+    "errors": {}
+  }
+  const {startDate, endDate} = req.body;
+  if (!startDate) err.errors.startDate = "Start date is required"
+  if (!endDate) err.errors.endDate = "End date is required"
+  if (startDate > endDate) err.errors.endDate = "endDate cannot come before startDate"
+
+  if (!startDate || !endDate || (startDate > endDate)) {
+    return res.status(400).json(err)
+  }
+  const date1 = new Date(endDate).getTime()
+  const date2 = new Date().getTime()
+  if (date1 < date2) {
+    return res.status(400).json({
+      "message": "Can't book a spot in the past",
+      "statusCode": 400
+    })
+  }
+
+  const allDates = await Booking.findAll({
+    attributes: ['startDate', 'endDate'],
+    where: {
+      spotId: spot.id
     }
-    let booking = await Booking.create(bookingParams);
-    // booking = await Booking.findByPk(booking.id)
-    return res.json(booking)
+  })
+
+  err.message = "Sorry, this spot is already booked for the specified dates"
+  err.errors = {}
+  for (let dates of allDates) {
+    let start = dates.startDate
+    let end = dates.endDate
+    let formattedStart = new Date(start).getTime()
+    let formattedEnd = new Date(end).getTime()
+    let formattedStartDate = new Date(startDate).getTime()
+    let formattedEndDate = new Date(endDate).getTime()
+    if ((formattedStartDate >= formattedStart && formattedStartDate <= formattedEnd)) {
+      err.errors.startDate = "Start date conflicts with an existing booking"
+    }
+    if ((formattedEndDate >= formattedStart && formattedEndDate <= formattedEnd)) {
+      err.errors.endDate = "End date conflicts with an existing booking"
+    }
+  }
+
+  if (err.errors["endDate"] || err.errors["startDate"]) {
+    return res.status(400).json({
+      "message": "Can't book a spot in the past",
+      "statusCode": 400,
+      "errors": err.errors
+    })
+  }
+
+  const booking = await Booking.create({
+    spotId: spot.id,
+    userId: req.user.id,
+    startDate,
+    endDate
+  })
+  res.json(booking);
 })
 
 //edit a booking
