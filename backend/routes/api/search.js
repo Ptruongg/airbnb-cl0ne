@@ -13,7 +13,9 @@ router.get("/", async(req, res, next) => {
     let spotName = req.params.name;
     Spot.find({name: spotName}, function (err, spots) {
         if(err) {
-            return "Invalid Search"
+            return res.render("/", {spots: null})
         }
+        res.render("/", {name: spotName})
+        next();
     })
 })
