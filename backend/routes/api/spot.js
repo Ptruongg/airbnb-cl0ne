@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
   const pagination = {
     filter: [],
   };
-  let { page, size, minPrice, maxPrice } =
+  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } =
     req.query;
   const error = {
     message: "Validation Error",
@@ -52,7 +52,6 @@ router.get("/", async (req, res) => {
     error.errors.maxLng = "Maximum longitude is invalid";
     maxLng = false;
   }
-
   if (Number(minLng) < -180) {
     error.errors.minLng = "Minimum longitude is invalid";
     minLng = false;
