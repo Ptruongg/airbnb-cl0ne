@@ -26,10 +26,10 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div id='navBarRightLoad'>
-          <div id='loginButtonDiv'>
+          <button id='loginButtonDiv'>
             <LoginFormModal />
-            <div><NavLink id='signUp' to="/signup">Sign Up</NavLink></div>
-          </div>
+          </button>
+            <button><NavLink id='signUp' to="/signup">Sign Up</NavLink></button>
         </div>
       </>
     );
