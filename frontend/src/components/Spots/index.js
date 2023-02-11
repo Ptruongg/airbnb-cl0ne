@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews";
 import Search from "../Search"
+import Footer from "../Footer";
 import "./spots.css";
 
 // import spot = require("../../../../backend/db/models/spot");
@@ -87,6 +88,9 @@ const AllSpots = () => {
               </NavLink>
             </div>
           ))}
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

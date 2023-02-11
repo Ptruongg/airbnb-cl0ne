@@ -17,6 +17,7 @@ import UserSpots from "./components/UserSpots";
 import BookingPage from "./components/Bookings/BookingPage";
 import MyBookings from "./components/Bookings/myBookings";
 import Search from "./components/Search/index"
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/login">
             <LoginFormPage />
             <DemoUser />
+
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
@@ -40,6 +42,7 @@ function App() {
           </Route>
           <Route exact path="/">
             <AllSpots />
+            <Footer />
           </Route>
           <Route exact path="/currentUser/bookings">
             <MyBookings />
