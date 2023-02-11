@@ -26,10 +26,10 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div id='signUpandLoginBut'>
-          <button id='loginButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px"}}>
+          <button id='loginButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px", alignItems: "center", justifyContent: "center"}}>
             <LoginFormModal />
           </button>
-          <button id='signUpButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px"}}>
+          <button id='signUpButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px", alignItems: "center", justifyContent: "center"}}>
             <NavLink id='signUp' to="/signup">Sign Up</NavLink>
           </button>
         </div>
@@ -46,14 +46,14 @@ function Navigation({ isLoaded }) {
             <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png" ></img>
           </NavLink>
         </div>
-        <div className='aboutMe'>
+        {/* <div className='aboutMe'>
           <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>
             Github
           </div>
           <div className='name'>
             Developed by Philip Truong
           </div>
-        </div>
+        </div> */}
         {isLoaded && sessionLinks}
       </div>
     </nav>
