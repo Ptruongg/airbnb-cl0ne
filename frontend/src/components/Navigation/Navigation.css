@@ -184,3 +184,16 @@
     justify-content: center;
     align-items: center;
 }
+#signUpandLoginBut {
+    display: flex;
+    margin-right: 10px ;
+
+}
+#signUpButtonDiv {
+    display: flex;
+    width: 100px;
+}
+#loginiButtonDiv {
+    display: flex;
+
+}

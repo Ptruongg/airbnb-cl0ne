@@ -25,11 +25,13 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <div id='navBarRightLoad'>
-          <button id='loginButtonDiv'>
+        <div id='signUpandLoginBut'>
+          <button id='loginButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px"}}>
             <LoginFormModal />
           </button>
-            <button><NavLink id='signUp' to="/signup">Sign Up</NavLink></button>
+          <button id='signUpButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px"}}>
+            <NavLink id='signUp' to="/signup">Sign Up</NavLink>
+          </button>
         </div>
       </>
     );
