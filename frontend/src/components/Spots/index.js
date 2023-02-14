@@ -38,9 +38,6 @@ const AllSpots = () => {
   };
   return (
     <div className="spotsPage">
-      <div className='searchBar'>
-        <Search />
-      </div>
       <div className="eachSpot">
         {spots &&
           spots.map((spot) => (
