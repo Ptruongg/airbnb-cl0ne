@@ -5,6 +5,7 @@ import { deleteSpotId, getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews"
 import { getAllUsers } from "../../store/user";
 import CreateBookingForm from "../Bookings/createBookings";
+import MapContainer from "../GoogleMaps";
 import "./spotDetails.css"
 
 const SpotsDetail = () => {
@@ -92,7 +93,7 @@ const SpotsDetail = () => {
         <div className="spotDetailPage">
           <div className="top">
             <div className="topText">
-              <div className="detailName">{spot.name} </div>
+              <div className="detailName" style={{fontSize: "30px", marginTop: "10px"}}>{spot.name} </div>
               <div className="outerBox">
                 <div className="avgStarRating">
                   <div className="star">{<i className="fas fa-star"></i>}</div>
@@ -132,74 +133,82 @@ const SpotsDetail = () => {
               alt={spot.name}
             ></img>
           </div>
-          <div className="hosted-container">
-            <div>Entire home hosted by {spotsUser[0]?.firstName}</div>
-          </div>
-          <div className="bottomContainer">
-            <div className="detailDescription">
-              <div className="self">
-                <i className="fa-solid fa-door-open"></i> Self check-in
+          <div className="midContainer">
+            <div className="infoDiv">
+              <div className="hosted-container">
+                <div>Entire home hosted by {spotsUser[0]?.firstName}</div>
               </div>
-              <div className="check">Check yourself in with the lockbox.</div>
-              <div className="superhost">
-                <i className="fa-solid fa-award"></i> {spotsUser[0]?.firstName}{" "}
-                is a Superhost
-              </div>
-              <div>
-                <CreateBookingForm
-                  spot={spot}
-                  star={avgStarRating}
-                  review={allReviewsForThisSpot}
-                />
-              </div>
-              <div className="experience">
-                Superhosts are experienced, highly rated hosts who are committed
-                to providing great stays for guests.
-              </div>
-              <div className="cancel">
-                <i className="fa-regular fa-calendar"></i> Free cancellation for
-                48 hours.
-              </div>
-              <div className="description">{spot.description}</div>
-            </div>
-
-          </div>
-          <div className="spotsReviews">
-            <div className="reviewStars">
-              <div className="starIcon">{<i className="fas fa-star"></i>}</div>
-              <div className="avgRatingBottom">
-                {(avgStarRating || 0).toFixed(2)}{" "}
-              </div>
-              <div className="circleBottom">
-                <i className="fas fa-circle"></i>{" "}
-              </div>
-              <div className="reviewCountBottom">
-                {allReviewsForThisSpot.length} Review(s)
-              </div>
-              {sessionUser && (
-                <div>
-                  <button className="reviewButton" onClick={handleCreateReview}>
-                    Create Review
-                  </button>
-
-                </div>
-              )}
-            </div>
-
-            {allReviewsForThisSpot.map((review) => (
-              <div key={review.id}>
-                <div className="eachReview">
-                  <div className="reviewName">
-                    Name: {fetchNameById(review.userId)}
+              <div className="bottomContainer">
+                <div className="detailDescription">
+                  <div className="self" style={{marginTop: "20px", marginBottom: "20px"}}>
+                    <i className="fa-solid fa-door-open"></i> Self check-in
                   </div>
-                  <div className="reviewContent">Review: {review.review}</div>
-                  {/* <div className="eachReviewStars">
-                      Stars: {review.stars}
-                      <i className="fas fa-star"></i>
-                    </div> */}
+                  <div className="check" style={{marginTop: "20px", marginBottom: "20px"}} >Check yourself in with the lockbox.</div>
+                  <div className="superhost" style={{marginTop: "20px", marginBottom: "20px"}}>
+                    <i className="fa-solid fa-award"></i> {spotsUser[0]?.firstName}{" "}
+                    is a Superhost
+                  </div>
+                  <div className="experience" style={{marginTop: "20px", marginBottom: "20px"}}>
+                    Superhosts are experienced, highly rated hosts who are committed
+                    to providing great stays for guests.
+                  </div>
+                  <div className="cancel" style={{marginTop: "20px", marginBottom: "20px"}}>
+                    <i className="fa-regular fa-calendar"></i> Free cancellation for
+                    48 hours.
+                  </div>
+                  <div className="description" style={{marginTop: "20px", marginBottom: "20px"}}>{spot.description}</div>
                 </div>
               </div>
-            ))}
+              <div className="spotsReviews">
+                <div className="reviewStars">
+                  <div className="starIcon">{<i className="fas fa-star"></i>}</div>
+                  <div className="avgRatingBottom">
+                    {(avgStarRating || 0).toFixed(2)}{" "}
+                  </div>
+                  <div className="circleBottom">
+                    <i className="fas fa-circle"></i>{" "}
+                  </div>
+                  <div className="reviewCountBottom">
+                    {allReviewsForThisSpot.length} Review(s)
+                  </div>
+                  {sessionUser && (
+                    <div>
+                      <button className="reviewButton" onClick={handleCreateReview}>
+                        Create Review
+                      </button>
+
+                    </div>
+                  )}
+                </div>
+
+                {allReviewsForThisSpot.map((review) => (
+                  <div key={review.id}>
+                    <div className="eachReview" style={{marginTop: "10px", marginBottom: "10px"}}>
+                      <div className="reviewName" style={{marginTop: "10px", marginBottom: "10px"}}>
+                        Name: {fetchNameById(review.userId)}
+                      </div>
+                      <div className="reviewContent" style={{marginTop: "10px", marginBottom: "10px"}}>Review: {review.review}</div>
+                      <div className="eachReviewStars" style={{marginTop: "10px", marginBottom: "10px"}}>
+                        Stars: {review.stars}
+                        <i className="fas fa-star" style={{marginTop: "10px", marginBottom: "10px"}}></i>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bookingDiv">
+              <CreateBookingForm
+                spot={spot}
+                star={avgStarRating}
+                review={allReviewsForThisSpot}
+              />
+            </div>
+          </div>
+
+          <div className="googleMaps">
+            <div className="location" >Location</div>
+            <MapContainer lng={spot?.lng} lat={spot?.lat} />
           </div>
         </div>
       </>
