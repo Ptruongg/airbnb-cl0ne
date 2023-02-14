@@ -30,14 +30,14 @@ function UserReviews() {
   return (
     isLoaded && (
       <div className="reviewsContainer">
-        <div className="myReviews">
+        <div className="myReviews" style={{marginTop: "20px"}}>
           <div className="reviewTitle">{reviews?.length > 0 ? "My Reviews" : "No Reviews"}</div>
           <div className="eachContainer">
           {reviews?.map((review) => (
             <div key={review.id} className="eachReview">
-              <div>My Comment: {review.review}</div>
-              <div>Stars: {review.stars}</div>
-              <NavLink className="spot-link" to={`/spots/${review.spotId}`}>Link to Spot</NavLink>
+              <div style={{marginTop: "2px", marginBottom: "2px"}}>My Comment: {review.review}</div>
+              <div style={{marginTop: "2px", marginBottom: "2px"}}>Stars: {review.stars}</div>
+              <NavLink className="spot-link" style={{color: "#ff385c"}} to={`/spots/${review.spotId}`}>Link to this Review</NavLink>
               <div>
                 <button className="deleteReview" onClick={handleDeleteClick(review.id)}>
                   Delete this Review

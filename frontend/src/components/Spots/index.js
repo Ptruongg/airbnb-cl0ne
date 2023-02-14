@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews";
+import MapContainer from "../GoogleMaps";
 import Search from "../Search"
 import Footer from "../Footer";
 import "./spots.css";
@@ -38,8 +39,8 @@ const AllSpots = () => {
   return (
     <div className="spotsPage">
       <div className='searchBar'>
-          <Search />
-        </div>
+        <Search />
+      </div>
       <div className="eachSpot">
         {spots &&
           spots.map((spot) => (
