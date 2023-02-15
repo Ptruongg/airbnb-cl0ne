@@ -53,13 +53,13 @@ const AllSpots = () => {
                       }}></img>
                     </div>
                   )}
-                  <div className="spotName">
+                  <div className="spotName" style={{color: "black", fontWeight: "bold"}}>
                     {spot.name}
                   </div>
                   <div className="roomDetails">
                     <div className="roomData">
-                      <div className="spotLocation">
-                        <div>
+                      <div className="spotLocation" style={{color: "gray"}}>
+                        <div >
                           {spot.city}, {spot.state}
                         </div>
                         <div className="spotStars">
