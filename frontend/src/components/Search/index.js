@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { Card, Input } from "semantic-ui-react";
-// import "./search.css";
+import { Card, Input } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import "./Search.css"
 
@@ -47,9 +46,9 @@ export default function Search() {
                         return (
                             <div className="results" key={item.id}>
                                 <NavLink to={`/spots/${item.id}`}>
-                                    <div className="resultsName">{item.name}</div>
+                                    {/* <div className="resultsName">{item.name}</div> */}
                                     <div className="resultsCity" >{item.city}</div>
-                                    <img className="search-img" src={item.previewImage}></img>
+                                    {/* <img className="search-img" src={item.previewImage}></img> */}
                                 </NavLink>
                             </div>
                         );
