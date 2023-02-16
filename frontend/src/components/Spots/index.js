@@ -1,20 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews";
 import MapContainer from "../GoogleMaps";
+import axios from "axios";
 import Search from "../Search"
-import Footer from "../Footer";
+import Footer from "../Footer"
 import "./spots.css";
 
 // import spot = require("../../../../backend/db/models/spot");
 
 const AllSpots = () => {
   const dispatch = useDispatch();
+
+  // const search = item.item
+  // console.log(search, 'sssss')
   const spots = useSelector((state) => Object.values(state?.spots));
   const sessionUser = useSelector((state) => state.session.user)
   const reviews = useSelector((state) => Object.values(state?.reviews));
+  const [APIData, setAPIData] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleSubmit = (e) => e.preventDefault();
+
+  useEffect(() => {
+    axios.get(`/api/spots`).then((response) => {
+      setAPIData(response.data);
+    });
+  }, []);
+
+
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+    if (searchInput !== "") {
+      const filteredData = APIData.spots.filter((item) => {
+        return Object.values(item.city)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+    } else {
+      setFilteredResults(APIData);
+    }
+  };
   // const reviewsString = JSON.stringify(reviews)
   useEffect(() => {
     getAllSpots(dispatch);
@@ -24,6 +55,7 @@ const AllSpots = () => {
   useEffect(() => {
     dispatch(loadSpotReviewsThunk());
   }, [dispatch, sessionUser]);
+
 
   const starSpot = (spotId) => {
     const allReviewsForThisSpot = reviews.filter((review) => {
@@ -38,6 +70,74 @@ const AllSpots = () => {
   };
   return (
     <div className="spotsPage">
+      <div className="searchDiv">
+        <form className="searchBar" onSubmit={handleSubmit}>
+          <input
+            style={{ height: 20, borderColor: "gray", borderWidth: 1, height: "30px", width: "500px" }}
+            icon="search"
+            placeholder="Search by City..."
+            onChange={(e) => searchItems(e.target.value)}
+            className="inputBox"
+          />
+        </form>
+        {spots &&
+
+          <div className="resultsSearch">
+            {searchInput.length > 1 ? (
+              filteredResults.map((spot) => {
+                return (
+                  <div className="results" key={spot.id}>
+                    <NavLink to={`/spots/${spot.id}`}>
+                      <div className="room">
+                        {spot.previewImage && (
+                          <div className="imgDiv">
+                            <img className="spotImg" src={spot.previewImage} onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src =
+                                "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
+                            }}></img>
+                          </div>
+                        )}
+                        <div className="spotName" style={{ color: "black", fontWeight: "bold" }}>
+                          {spot.name}
+                        </div>
+                        <div className="roomDetails">
+                          <div className="roomData">
+                            <div className="spotLocation" style={{ color: "gray" }}>
+                              <div >
+                                {spot.city}, {spot.state}
+                              </div>
+                              <div className="spotStars">
+                                <div className="star">
+                                  <i className="fa-solid fa-star star-design"></i>
+                                  {starSpot(spot.id)}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="spotDistance">{`${Math.floor(
+                              Math.random() * 100 + 200
+                            )
+                              .toString()
+                              .replace(
+                                /\B(?=(\d{3})+(?!\d))/g,
+                                ","
+                              )} miles away`}</div>
+
+                            <p className="spotPrice"> <b>${spot.price}</b>&nbsp;night</p>
+                          </div>
+                        </div>
+                      </div>
+                    </NavLink>
+                  </div>
+                );
+              })
+            ) : (
+              <div></div>
+            )}
+          </div>
+        }
+      </div>
+
       <div className="eachSpot">
         {spots &&
           spots.map((spot) => (
@@ -53,13 +153,13 @@ const AllSpots = () => {
                       }}></img>
                     </div>
                   )}
-                  <div className="spotName">
+                  <div className="spotName" style={{ color: "black", fontWeight: "bold" }}>
                     {spot.name}
                   </div>
                   <div className="roomDetails">
                     <div className="roomData">
-                      <div className="spotLocation">
-                        <div>
+                      <div className="spotLocation" style={{ color: "gray" }}>
+                        <div >
                           {spot.city}, {spot.state}
                         </div>
                         <div className="spotStars">
@@ -80,7 +180,6 @@ const AllSpots = () => {
 
                       <p className="spotPrice"> <b>${spot.price}</b>&nbsp;night</p>
                     </div>
-
                   </div>
                 </div>
               </NavLink>

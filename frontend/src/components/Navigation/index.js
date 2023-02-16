@@ -46,9 +46,7 @@ function Navigation({ isLoaded }) {
             <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png" ></img>
           </NavLink>
         </div>
-        <div>
-          <Search />
-        </div>
+        < Search />
         {/* <div className='aboutMe'>
           <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>
             Github

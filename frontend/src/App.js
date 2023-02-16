@@ -34,13 +34,13 @@ function App() {
           <Route exact path="/login">
             <LoginFormPage />
             <DemoUser />
-
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
             <ProfileButton />
           </Route>
           <Route exact path="/">
+            {/* <Search /> */}
             <AllSpots />
             <Footer />
           </Route>
@@ -68,9 +68,9 @@ function App() {
           <Route exact path="/spots/:spotId/createReview">
             <CreateReviews />
           </Route>
-          <Route path="/search">
-            <Search />
-          </Route>
+          {/* <Route path="/search">
+
+          </Route> */}
           <Route path="*">
             <div className="pageNotFound">404 Page Not Found</div>
           </Route>
