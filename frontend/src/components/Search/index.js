@@ -2,23 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Input } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import ListPage from "../ListPage";
 import "./Search.css"
 
 export default function Search() {
     const [APIData, setAPIData] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+
+    const handleSubmit = (e) => e.preventDefault();
+
     useEffect(() => {
         axios.get(`/api/spots`).then((response) => {
             setAPIData(response.data);
         });
     }, []);
 
+
     const searchItems = (searchValue) => {
         setSearchInput(searchValue);
         if (searchInput !== "") {
             const filteredData = APIData.spots.filter((item) => {
-                return Object.values(item)
+                return Object.values(item.city)
                     .join("")
                     .toLowerCase()
                     .includes(searchInput.toLowerCase());
@@ -29,9 +34,10 @@ export default function Search() {
         }
     };
 
+
     return (
         <div className="searchDiv">
-            <div className="searchBar">
+            <form className="searchBar" onSubmit={handleSubmit}>
                 <input
                     style={{ height: 20, borderColor: "gray", borderWidth: 1, height: "30px", width: "500px" }}
                     icon="search"
@@ -39,7 +45,8 @@ export default function Search() {
                     onChange={(e) => searchItems(e.target.value)}
                     className="inputBox"
                 />
-            </div>
+            </form>
+
             <div className="resultsSearch">
                 {searchInput.length > 1 ? (
                     filteredResults.map((item) => {
