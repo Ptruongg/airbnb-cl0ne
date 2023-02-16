@@ -54,7 +54,7 @@ export default function Search() {
                             <div className="results" key={item.id}>
                                 <NavLink to={`/spots/${item.id}`}>
                                     {/* <div className="resultsName">{item.name}</div> */}
-                                    <div className="resultsCity" >{item.city}</div>
+                                    <div className="resultsCity">{item.city}</div>
                                     {/* <img className="search-img" src={item.previewImage}></img> */}
                                 </NavLink>
                             </div>
