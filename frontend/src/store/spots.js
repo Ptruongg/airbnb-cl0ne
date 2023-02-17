@@ -6,8 +6,15 @@ const GET_SPOT_ID = 'spots/GET_SPOT_ID';
 const ADD_SPOT = 'spots/ADD_SPOT';
 const EDIT_SPOT = 'spots/EDIT';
 const DELETE_SPOT = 'spots/DELETE';
+const SEARCH_SPOTS = 'spots/SEARCH';
 
 //actions
+const searchSpots = (spots) => {
+    return {
+        type: SEARCH_SPOTS,
+        spots
+    }
+}
 const getSpots = (spots) => {
     return {
         type: GET_ALL_SPOTS,
@@ -53,6 +60,16 @@ const deleteSpot = (spotId) => {
 //thunks --
 
 //get all spots
+export const searchedSpots = (searchInput) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots?search=${searchInput}`);
+    if (response.ok) {
+        const data = await response.json();
+        console.log('yeeeeeeeeeee', data)
+        dispatch(searchSpots(data));
+        return response;
+    }
+    return response;
+}
 export const getAllSpots = async (dispatch) => {
     const response = await csrfFetch("/api/spots");
     if (response.ok) {
@@ -144,21 +161,26 @@ export const deleteSpotId = (spotId) => async (dispatch) => {
 
 const initialState = {};
 const spotsReducer = (state = initialState, action) => {
-    const newState = { ...state }
+    // const newState = { ...state }
     switch (action.type) {
+        case SEARCH_SPOTS: {
+            let newState = {};
+            action.spots.spots.forEach((spot) => (newState[spot.id] = spot));
+            return newState;
+        }
         case GET_ALL_SPOTS: {
-            const allSpots = {};
+            let allSpots = {};
             action.spots.spots.forEach((spot) => (allSpots[spot.id] = spot));
             return allSpots;
         }
         case GET_USER_SPOTS: {
-            const newState = {};
+            let newState = {};
             action.currentUserSpots.forEach(spot => newState[spot.id] = spot);
             let allSpots = { ...newState };
             return allSpots;
         }
         case GET_SPOT_ID: {
-            const newState = {...state};
+            let newState = {...state};
             newState[action.spot.id] = action.spot
             return newState
         }

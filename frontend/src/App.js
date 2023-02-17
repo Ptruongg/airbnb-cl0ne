@@ -40,7 +40,6 @@ function App() {
             <ProfileButton />
           </Route>
           <Route exact path="/">
-            {/* <Search /> */}
             <AllSpots />
             <Footer />
           </Route>

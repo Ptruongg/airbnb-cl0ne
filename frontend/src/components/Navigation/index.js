@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import Search from '../Search';
 import './Navigation.css';
+import SearchBar from '../Search';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -46,7 +47,7 @@ function Navigation({ isLoaded }) {
             <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png" ></img>
           </NavLink>
         </div>
-        < Search />
+        < SearchBar />
         {/* <div className='aboutMe'>
           <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>
             Github
