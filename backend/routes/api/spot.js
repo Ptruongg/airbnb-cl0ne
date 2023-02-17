@@ -1,12 +1,14 @@
 const express = require('express');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Spot, Review, Image, Booking } = require('../../db/models');
+const { User, Spot, Review, Image, Booking, Sequelize } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
 const router = express.Router();
 const { Op } = require('sequelize')
+
+
 
 //get all spots route
 // router.get('/', async (req, res) => {
@@ -21,14 +23,20 @@ router.get("/", async (req, res) => {
   const pagination = {
     filter: [],
   };
-  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } =
+  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice, search } =
     req.query;
+
+
   const error = {
     message: "Validation Error",
     statusCode: 400,
     errors: {},
   };
-
+  const Sequelize = require('sequelize');
+  const { Op } = require('sequelize')
+  let query = {
+    where: {}
+  };
   page = Number(page);
   size = Number(size);
 
@@ -110,6 +118,33 @@ router.get("/", async (req, res) => {
     });
   }
 
+  if (search) {
+    const searchLowerCase = `%${search.toLowerCase()}`;
+    query.where = {
+      [Op.or]: [
+        Sequelize.where(
+          Sequelize.fn('LOWER', Sequelize.col('address')),
+          'LIKE',
+          `%${searchLowerCase}%`
+        ),
+        Sequelize.where(
+          Sequelize.fn('LOWER', Sequelize.col('city')),
+          'LIKE',
+          `%${searchLowerCase}%`
+        ),
+        Sequelize.where(
+          Sequelize.fn('LOWER', Sequelize.col('state')),
+          'LIKE',
+          `%${searchLowerCase}%`
+        ),
+        Sequelize.where(
+          Sequelize.fn('LOWER', Sequelize.col('country')),
+          'LIKE',
+          `%${searchLowerCase}%`
+        )
+      ]
+    }
+  }
   pagination.size = size;
   pagination.page = page;
 
@@ -179,11 +214,11 @@ router.post('/', requireAuth, async (req, res) => {
   if (!country) {
     error.errors.country = "Country is required"
   }
-  if(!lat) {
-      error.errors.lat = "Latittude is not valid"
+  if (!lat) {
+    error.errors.lat = "Latittude is not valid"
   }
-  if(!lng) {
-      error.errors.lng = "Longitude is not valid"
+  if (!lng) {
+    error.errors.lng = "Longitude is not valid"
   }
   if (!name) {
     error.errors.name = "Name must be less than 50 characters"
@@ -307,6 +342,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
   res.json(spot);
 });
 
+//delete a spot
 router.delete('/:spotId', requireAuth, async (req, res) => {
   const { spotId } = req.params
   const spot = await Spot.findByPk(spotId)
@@ -323,6 +359,41 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     message: "Successfully Deleted",
     statusCode: 200
   })
+})
+
+//search a spot
+router.post("/search", async (req, res, next) => {
+  const { Op } = require('sequelize');
+  const { searchInput } = req.body;
+  const searchLowerCase = `%${searchInput.toLowerCase()}`;
+  const spots = await Spot.findAll({
+    where: {
+      [Op.or]: [
+        {
+          address: {
+            [Op.substring]: searchLowerCase,
+          },
+        },
+        {
+          city: {
+            [Op.substring]: searchLowerCase,
+          },
+        },
+        {
+          state: {
+            [Op.substring]: searchLowerCase,
+          },
+        },
+        {
+          country: {
+            [Op.substring]: searchLowerCase,
+          },
+        },
+      ],
+    },
+  });
+  res.status(200);
+  return res.json(spots)
 })
 
 
