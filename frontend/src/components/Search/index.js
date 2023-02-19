@@ -68,58 +68,60 @@
 //     );
 // }
 
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { NavLink, useHistory, useLocation, useParams } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import { useDispatch } from "react-redux";
+// import { NavLink, useHistory, useLocation, useParams } from "react-router-dom";
 // import "../Navigation.css";
 // import "./SearchBar.css";
 // import magnify from "./NavImages/magnifying-glass.svg";
-import { searchedSpots } from "../../store/spots";
+// import { fetchSearchedSpots } from "../../store/spots";
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect, NavLink, useHistory } from "react-router-dom";
+import { fetchSearchedSpots} from "../../store/spots";
+import SpotsDetail from "../SpotDetails";
+// import SpotsCards from "../SpotsCards";
+// import "./Searched.css";
 
 function SearchBar() {
+  const [spotsShowing, setSpotsShowing] = useState(false);
+  const spots = useSelector((state) => state?.spots);
+  const normalizedSpots = Object.values(spots);
+  const dispatch = useDispatch();
   const history = useHistory();
-  const dispatch = useDispatch()
-  const { pathname } = useLocation();
-  const [anywhere, setAnyWhere] = useState("");
-  const [anyweek, setAnyWeek] = useState("");
-  const [guests, setGuests] = useState("");
-
-  const spotId = (pathname) => pathname.split("/")[2];
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(searchedSpots(anywhere))
-
-  }
+  //console.log("this should be an array", normalizedSpots)
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const searchParameters = url.searchParams;
+    (async () => {
+      let searchInput = searchParameters.get("input");
+      //console.log("searcghinput", searchInput)
+      await dispatch(fetchSearchedSpots(searchInput));
+      //console.log("normalized updating", normalizedSpots)
+      setSpotsShowing(!spotsShowing);
+    })();
+  }, []);
 
   return (
-    <div
-      className={
-        pathname === `/spots/${spotId(pathname)}`
-          ? "search-bar-spot-details"
-          : "search-bar-wrapper"
-      }
-    >
-      <form onSubmit={handleSubmit}>
-      <div className="search">
-        <input
-          type="text"
-          name="anywhere"
-          placeholder="Anywhere"
-          value={anywhere}
-          onChange={(e) => setAnyWhere(e.target.value)}
-          required
-        />
-
-        <button
-          className="search-button"
-          type="submit"
-        >
-          {/* <img src={magnify} alt="search" /> */}
-        </button>
+    <>
+      {normalizedSpots.length ? (
+        <div className="nav-search">Search Results: </div>
+      ) : (
+        <div className="in-search">No Results</div>
+      )}
+      <div className="property-of">
+        {normalizedSpots.map((spot) => {
+          return (
+            <div className="spotsss">
+              <NavLink to={`/spots/${spot.id}`}>
+                <SpotsDetail spot={spot} />
+              </NavLink>
+            </div>
+          );
+        })}
       </div>
-      </form>
-    </div>
+    </>
   );
 }
 

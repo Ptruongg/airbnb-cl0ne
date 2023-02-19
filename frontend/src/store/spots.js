@@ -7,14 +7,22 @@ const ADD_SPOT = 'spots/ADD_SPOT';
 const EDIT_SPOT = 'spots/EDIT';
 const DELETE_SPOT = 'spots/DELETE';
 const SEARCH_SPOTS = 'spots/SEARCH';
+const CLEAR_SEARCH_SPOTS = "spots/clearSearchSpots";
 
 //actions
 const searchSpots = (spots) => {
     return {
         type: SEARCH_SPOTS,
-        spots
+        spots,
     }
 }
+
+export const clearSearchSpots = () => {
+    return {
+        type: CLEAR_SEARCH_SPOTS
+    };
+};
+
 const getSpots = (spots) => {
     return {
         type: GET_ALL_SPOTS,
@@ -60,12 +68,15 @@ const deleteSpot = (spotId) => {
 //thunks --
 
 //get all spots
-export const searchedSpots = (searchInput) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots?search=${searchInput}`);
+export const fetchSearchedSpots = (searchInput) => async (dispatch) => {
+    const response = searchInput
+    ? await csrfFetch(`/api/spots?search=${searchInput}`)
+    : await csrfFetch("/api/spots")
+
     if (response.ok) {
         const data = await response.json();
-        console.log('yeeeeeeeeeee', data)
-        dispatch(searchSpots(data));
+        // console.log('daaaa', data.spots)
+        dispatch(searchSpots(data.spots));
         return response;
     }
     return response;
@@ -114,6 +125,24 @@ export const createSpot = (spot) => async (dispatch) => {
     }
     return response;
 }
+// export const fetchSearchSpots = (searchInput) => async (dispatch) => {
+//     console.log(searchInput, "made itttttttttttttttttttttttttttt")
+//     const response = await csrfFetch("/api/spots/search", {
+//         method: "POST",
+//         body: JSON.stringify({
+//             searchInput
+//         }),
+//     });
+//     if (response.ok) {
+//         const data = await response.json();
+//         console.log(data, "made itttttttttttttttttttttttttttt")
+
+//         dispatch(searchSpots(data));
+//         return response;
+//     }
+//     return response;
+// };
+
 
 //edit a spot
 // export const editSpotID = (spot) => async (dispatch) => {
@@ -133,17 +162,17 @@ export const createSpot = (spot) => async (dispatch) => {
 //edit a spot
 export const spotEdit = (spot) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spot.spotId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(spot),
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(spot),
     });
     if (response.ok) {
-      const editedSpot = await response.json();
-      dispatch(editSpot(editedSpot));
-      return editedSpot;
+        const editedSpot = await response.json();
+        dispatch(editSpot(editedSpot));
+        return editedSpot;
     }
     return response;
-  };
+};
 
 //delete a spot
 export const deleteSpotId = (spotId) => async (dispatch) => {
@@ -159,17 +188,25 @@ export const deleteSpotId = (spotId) => async (dispatch) => {
     return response
 }
 
-const initialState = {};
+const initialState = { searchSpots: {}};
 const spotsReducer = (state = initialState, action) => {
     // const newState = { ...state }
     switch (action.type) {
         case SEARCH_SPOTS: {
-            let newState = {};
-            action.spots.spots.forEach((spot) => (newState[spot.id] = spot));
-            return newState;
+            let spots = {};
+            action.spots.forEach(spot => {
+                spots[spot.id] = spot;
+            })
+            return spots;
+        }
+        case CLEAR_SEARCH_SPOTS: {
+            return {
+                ...state,
+                searchSpots: {},
+            };
         }
         case GET_ALL_SPOTS: {
-            let allSpots = {};
+            const allSpots = {};
             action.spots.spots.forEach((spot) => (allSpots[spot.id] = spot));
             return allSpots;
         }
@@ -180,7 +217,7 @@ const spotsReducer = (state = initialState, action) => {
             return allSpots;
         }
         case GET_SPOT_ID: {
-            let newState = {...state};
+            let newState = { ...state };
             newState[action.spot.id] = action.spot
             return newState
         }
