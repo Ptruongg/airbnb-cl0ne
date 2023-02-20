@@ -1,6 +1,6 @@
 const express = require('express');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Spot, Review, Image, Booking, Sequelize } = require('../../db/models');
+const { User, Spot, Review, Image, Booking, sequelize } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -32,11 +32,57 @@ router.get("/", async (req, res) => {
     statusCode: 400,
     errors: {},
   };
-  const Sequelize = require('sequelize');
+
   const { Op } = require('sequelize')
+  const Sequelize = require('sequelize');
+
   let query = {
     where: {}
   };
+
+  let Spots;
+
+  if (search) {
+    const toLower = search.toLowerCase();
+    const namedSpots = await Spot.findAll({
+      group: ["Spot.id"],
+      where: {
+        city: sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + toLower+ '%')
+      }
+    })
+    // console.log("what is being look", search)
+    // console.log("name of this pklace", namedSpots)
+    Spots = namedSpots;
+  };
+
+  // if (search) {
+  //   const searchLowerCase = `%${search.toLowerCase()}`;
+  //   query.where = {
+  //     [Op.or]: [
+  //       Sequelize.where(
+  //         Sequelize.fn('LOWER', Sequelize.col('address')),
+  //         'LIKE',
+  //         `%${searchLowerCase}%`
+  //       ),
+  //       Sequelize.where(
+  //         Sequelize.fn('LOWER', Sequelize.col('city')),
+  //         'LIKE',
+  //         `%${searchLowerCase}%`
+  //       ),
+  //       Sequelize.where(
+  //         Sequelize.fn('LOWER', Sequelize.col('state')),
+  //         'LIKE',
+  //         `%${searchLowerCase}%`
+  //       ),
+  //       Sequelize.where(
+  //         Sequelize.fn('LOWER', Sequelize.col('country')),
+  //         'LIKE',
+  //         `%${searchLowerCase}%`
+  //       )
+  //     ]
+  //   }
+  // }
+
   page = Number(page);
   size = Number(size);
 
@@ -118,33 +164,7 @@ router.get("/", async (req, res) => {
     });
   }
 
-  if (search) {
-    const searchLowerCase = `%${search.toLowerCase()}`;
-    query.where = {
-      [Op.or]: [
-        Sequelize.where(
-          Sequelize.fn('LOWER', Sequelize.col('address')),
-          'LIKE',
-          `%${searchLowerCase}%`
-        ),
-        Sequelize.where(
-          Sequelize.fn('LOWER', Sequelize.col('city')),
-          'LIKE',
-          `%${searchLowerCase}%`
-        ),
-        Sequelize.where(
-          Sequelize.fn('LOWER', Sequelize.col('state')),
-          'LIKE',
-          `%${searchLowerCase}%`
-        ),
-        Sequelize.where(
-          Sequelize.fn('LOWER', Sequelize.col('country')),
-          'LIKE',
-          `%${searchLowerCase}%`
-        )
-      ]
-    }
-  }
+
   pagination.size = size;
   pagination.page = page;
 
@@ -362,39 +382,19 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 })
 
 //search a spot
-router.post("/search", async (req, res, next) => {
-  const { Op } = require('sequelize');
-  const { searchInput } = req.body;
-  const searchLowerCase = `%${searchInput.toLowerCase()}`;
-  const spots = await Spot.findAll({
-    where: {
-      [Op.or]: [
-        {
-          address: {
-            [Op.substring]: searchLowerCase,
-          },
-        },
-        {
-          city: {
-            [Op.substring]: searchLowerCase,
-          },
-        },
-        {
-          state: {
-            [Op.substring]: searchLowerCase,
-          },
-        },
-        {
-          country: {
-            [Op.substring]: searchLowerCase,
-          },
-        },
-      ],
-    },
-  });
-  res.status(200);
-  return res.json(spots)
+router.get("/search", async (req, res) => {
+  const  searchInput  = req.query.q;
+  const searchResults = searchDatabase(searchInput)
+  res.json(searchResults)
+
+
 })
 
+function searchDatabase(searchInput) {
+  const searchResults = Spot.filter(item => {
+    return item.city.toLowerCase().includes(searchInput.toLowerCase())
+  })
+  return searchResults
+}
 
 module.exports = router;
