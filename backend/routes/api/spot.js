@@ -40,7 +40,8 @@ router.get("/", async (req, res) => {
     where: {}
   };
 
-  let Spots;
+
+  let spots;
 
   if (search) {
     const toLower = search.toLowerCase();
@@ -50,38 +51,20 @@ router.get("/", async (req, res) => {
         city: sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + toLower+ '%')
       }
     })
-    // console.log("what is being look", search)
-    // console.log("name of this pklace", namedSpots)
-    Spots = namedSpots;
+    console.log("what is being look", search)
+    console.log("name of this pklace", namedSpots)
+    spots = namedSpots;
   };
+  if(!search) {
+    spots = await Spot.findAll({
+      where: {
+        [Op.and]: pagination.filter,
+      },
+      limit: pagination.limit,
+      offset: pagination.offset,
+    });
+  }
 
-  // if (search) {
-  //   const searchLowerCase = `%${search.toLowerCase()}`;
-  //   query.where = {
-  //     [Op.or]: [
-  //       Sequelize.where(
-  //         Sequelize.fn('LOWER', Sequelize.col('address')),
-  //         'LIKE',
-  //         `%${searchLowerCase}%`
-  //       ),
-  //       Sequelize.where(
-  //         Sequelize.fn('LOWER', Sequelize.col('city')),
-  //         'LIKE',
-  //         `%${searchLowerCase}%`
-  //       ),
-  //       Sequelize.where(
-  //         Sequelize.fn('LOWER', Sequelize.col('state')),
-  //         'LIKE',
-  //         `%${searchLowerCase}%`
-  //       ),
-  //       Sequelize.where(
-  //         Sequelize.fn('LOWER', Sequelize.col('country')),
-  //         'LIKE',
-  //         `%${searchLowerCase}%`
-  //       )
-  //     ]
-  //   }
-  // }
 
   page = Number(page);
   size = Number(size);
@@ -168,13 +151,7 @@ router.get("/", async (req, res) => {
   pagination.size = size;
   pagination.page = page;
 
-  const spots = await Spot.findAll({
-    where: {
-      [Op.and]: pagination.filter,
-    },
-    limit: pagination.size,
-    offset: pagination.size * pagination.page,
-  });
+
   res.json({
     spots,
     page: pagination.page,
@@ -382,19 +359,17 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 })
 
 //search a spot
-router.get("/search", async (req, res) => {
-  const  searchInput  = req.query.q;
-  const searchResults = searchDatabase(searchInput)
-  res.json(searchResults)
+router.get("/search", async (req, res, next) => {
+    const { q } = req.query.q
 
+    const keys = ["city", "state", "country"];
 
+    const search = (data) => {
+        return data.filter((item) =>
+        keys.some((key) => item[key].toLowerCase().includes(q)))
+    }
+    res.json(search(Spot))
 })
 
-function searchDatabase(searchInput) {
-  const searchResults = Spot.filter(item => {
-    return item.city.toLowerCase().includes(searchInput.toLowerCase())
-  })
-  return searchResults
-}
 
 module.exports = router;
