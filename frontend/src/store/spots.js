@@ -68,14 +68,14 @@ const deleteSpot = (spotId) => {
 //thunks --
 
 //get all spots
-export const fetchSearchedSpots = (searchInput) => async (dispatch) => {
-    const response = searchInput
-    ? await csrfFetch(`/api/spots?search=${searchInput}`)
-    : await csrfFetch("/api/spots")
+export const fetchSearchedSpots = (search) => async (dispatch) => {
+    const response = search
+        ? await csrfFetch(`/api/spots?search=${search}`)
+        : await csrfFetch("/api/spots")
 
     if (response.ok) {
         const data = await response.json();
-        // console.log('daaaa', data.spots)
+        console.log(data, 'daaaaaaaaaaata')
         dispatch(searchSpots(data.spots));
         return response;
     }
@@ -125,23 +125,23 @@ export const createSpot = (spot) => async (dispatch) => {
     }
     return response;
 }
-// export const fetchSearchSpots = (searchInput) => async (dispatch) => {
-//     console.log(searchInput, "made itttttttttttttttttttttttttttt")
-//     const response = await csrfFetch("/api/spots/search", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             searchInput
-//         }),
-//     });
-//     if (response.ok) {
-//         const data = await response.json();
-//         console.log(data, "made itttttttttttttttttttttttttttt")
+export const fetchSearchSpots = (searchInput) => async (dispatch) => {
+    console.log(searchInput, "made itttttttttttttttttttttttttttt")
+    const response = await csrfFetch("/api/spots/search", {
+        method: "POST",
+        body: JSON.stringify({
+            searchInput
+        }),
+    });
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data, "made itttttttttttttttttttttttttttt")
 
-//         dispatch(searchSpots(data));
-//         return response;
-//     }
-//     return response;
-// };
+        dispatch(searchSpots(data));
+        return response;
+    }
+    return response;
+};
 
 
 //edit a spot
@@ -188,16 +188,25 @@ export const deleteSpotId = (spotId) => async (dispatch) => {
     return response
 }
 
-const initialState = { searchSpots: {}};
+// function normalizedObj(array) {
+//     let newObj = {};
+//     array.forEach((ele) => {
+//         if (ele.avgRating) {
+//             ele.avgRating = Math.round(ele.avgRating * 10) / 10
+//         }
+//         newObj[ele.id] = ele;
+//     });
+//     return newObj;
+// }
+
+const initialState = { searchSpots: {} };
 const spotsReducer = (state = initialState, action) => {
     // const newState = { ...state }
     switch (action.type) {
         case SEARCH_SPOTS: {
-            let spots = {};
-            action.spots.forEach(spot => {
-                spots[spot.id] = spot;
-            })
-            return spots;
+            let newSpots = { ...state };
+            action.spots.forEach((spot) => (newSpots[spot.id] = spot));
+            return newSpots
         }
         case CLEAR_SEARCH_SPOTS: {
             return {
@@ -206,7 +215,7 @@ const spotsReducer = (state = initialState, action) => {
             };
         }
         case GET_ALL_SPOTS: {
-            const allSpots = {};
+            let allSpots = {};
             action.spots.spots.forEach((spot) => (allSpots[spot.id] = spot));
             return allSpots;
         }

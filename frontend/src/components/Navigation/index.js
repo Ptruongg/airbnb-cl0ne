@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -6,7 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import Search from '../Search';
 import './Navigation.css';
 import SearchBar from '../Search';
-import { fetchSearchedSpots, getAllSpots } from '../../store/spots';
+import { fetchSearchedSpots} from '../../store/spots';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -14,17 +14,40 @@ function Navigation({ isLoaded }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
-
+  // const [loaded, setLoaded] = useState(false)
+  const refresh = () => window.location.reload(true)
+  // const handleSubmit = (e)  => {
+  //   e.preventDefault()
+  //   dispatch(fetchSearchedSpots(anywhere))
+  // }
   useEffect(() => {
     const currLocation = location.pathname
-    if(!currLocation.startsWith(`/searched`)) setSearchInput("")
+    if (!currLocation.startsWith(`/searched`)) setSearchInput("")
   }, [location])
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
+    // e.preventDefault();
+
+    dispatch(fetchSearchedSpots(searchInput))
     history.push(`/searched?input=${searchInput}`);
+
   };
 
+  // useEffect(() => {
+  //   setLoaded(true)
+  // }, [dispatch]);
+  // useEffect(() => {
+  //   const currLocation = location.pathname
+  //   if(!currLocation.startsWith(`/searched`)) setSearchInput("")
+  // }, [location])
 
+  // const handleSearch = async () => {
+  //   history.push(`/searched?input=${searchInput}`);
+  // };
+
+  // useEffect(() => {
+  //   dispatch(getAllSpots());
+  // }, [dispatch]);
   const newTab = (url) => {
     window.open(url, '_blank', 'noopener, noreferrer')
   }
@@ -41,10 +64,10 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div id='signUpandLoginBut'>
-          <button id='loginButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px", alignItems: "center", justifyContent: "center"}}>
+          <button id='loginButtonDiv' style={{ width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px", alignItems: "center", justifyContent: "center" }}>
             <LoginFormModal />
           </button>
-          <button id='signUpButtonDiv' style={{width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px", alignItems: "center", justifyContent: "center"}}>
+          <button id='signUpButtonDiv' style={{ width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px", alignItems: "center", justifyContent: "center" }}>
             <NavLink id='signUp' to="/signup">Sign Up</NavLink>
           </button>
         </div>
@@ -62,22 +85,22 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </div>
         <div className="header-search-container">
-              <div className="search-input-container">
-                <input
-                  className="search-input"
-                  type="text"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Search by city"
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") handleSearch();
-                  }}
-                />
-              </div>
-              <button className="magnify" onClick={() => handleSearch()}>
-                <i></i>
-              </button>
-            </div>
+          <div className="search-input-container">
+            <input
+              className="search-input"
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search by city"
+              onKeyPress={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+            />
+          </div>
+          <button className="magnify" onClick={() => handleSearch()}>
+            <i></i>
+          </button>
+        </div>
         {/* <div className='aboutMe'>
           <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>
             Github
@@ -88,6 +111,7 @@ function Navigation({ isLoaded }) {
         </div> */}
         {isLoaded && sessionLinks}
       </div>
+
     </nav>
   );
 }
