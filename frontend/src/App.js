@@ -18,6 +18,7 @@ import BookingPage from "./components/Bookings/BookingPage";
 import MyBookings from "./components/Bookings/myBookings";
 import Search from "./components/Search/index"
 import Footer from "./components/Footer";
+import SearchBar from "./components/Search/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,9 +68,9 @@ function App() {
           <Route exact path="/spots/:spotId/createReview">
             <CreateReviews />
           </Route>
-          {/* <Route path="/search">
-
-          </Route> */}
+          <Route path="/searched">
+            <SearchBar />
+          </Route>
           <Route path="*">
             <div className="pageNotFound">404 Page Not Found</div>
           </Route>
