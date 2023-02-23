@@ -79,7 +79,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, NavLink, useHistory } from "react-router-dom";
-import { fetchSearchedSpots } from "../../store/spots";
+import { fetchSearchedSpots } from "../../store/search";
 import SpotsDetail from "../SpotDetails";
 import { getAllSpots } from "../../store/spots";
 // import SpotsCards from "../SpotsCards";
@@ -90,13 +90,14 @@ function SearchBar() {
     const [spotLoaded, setSpotLoaded] = useState(false);
     const [loadedSpots, setLoadedSpots] = useState("")
     const spots = useSelector((state) => state?.spots)
-    const search = useSelector((state) => state?.search)
+    const search = useSelector((state) => Object.values(state?.search))
     const normalizedSpots = Object.values(spots);
     const dispatch = useDispatch();
     const history = useHistory();
     //const location = useLocation();
     console.log(spots, 'sppoooooots')
     console.log(search, 'seaaaaarch')
+
     useEffect(() => {
         const url = new URL(window.location.href)
         const searchParameters = url.searchParams;
@@ -104,8 +105,8 @@ function SearchBar() {
             let searchInput = searchParameters.get("input");
             console.log("ahhhhh seeeeee", fetchSearchedSpots )
             dispatch(fetchSearchedSpots(searchInput));
-            setSpotsShowing(!spotsShowing);
-            // setSpotLoaded(spotLoaded)s
+            // setSpotsShowing(!spotsShowing);
+            setLoadedSpots("")
 
         })();
     }, [dispatch, JSON.stringify(search)])
@@ -120,10 +121,9 @@ function SearchBar() {
 
     return (
         <>
-
-            {normalizedSpots.length ? <div className="nav-search">Search Results: </div> : <div className="in-search">No Results</div>}
+            {search.length ? <div className="nav-search">Search Results: </div> : <div className="in-search">No Results</div>}
             <div className="property-of">
-                {normalizedSpots.map((spot) => {
+                {search.map((spot) => {
                     return <div className="spotsss">
                         <NavLink to={`/spots/${spot.id}`}>
                             <div className="room">

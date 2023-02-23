@@ -24,7 +24,7 @@ export const fetchSearchedSpots = (search) => async (dispatch) => {
     return response;
 }
 
-const initialState = { searchSpots: {} };
+const initialState = {};
 const searchReducer = (state = initialState, action) => {
     // const newState = { ...state }
     switch (action.type) {

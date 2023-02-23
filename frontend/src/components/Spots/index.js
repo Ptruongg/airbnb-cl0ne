@@ -104,7 +104,6 @@ const AllSpots = () => {
             </div>
           ))}
       </div>
-      )
       <div>
         <Footer />
       </div>

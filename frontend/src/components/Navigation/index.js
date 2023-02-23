@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -6,7 +6,8 @@ import LoginFormModal from '../LoginFormModal';
 import Search from '../Search';
 import './Navigation.css';
 import SearchBar from '../Search';
-import { fetchSearchedSpots} from '../../store/spots';
+import { fetchSearchedSpots} from '../../store/search';
+import { getAllSpots } from '../../store/spots';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -14,8 +15,9 @@ function Navigation({ isLoaded }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
   // const [loaded, setLoaded] = useState(false)
-  const refresh = () => window.location.reload(true)
+  // const refresh = () => window.location.reload(true)
   // const handleSubmit = (e)  => {
   //   e.preventDefault()
   //   dispatch(fetchSearchedSpots(anywhere))
@@ -27,10 +29,10 @@ function Navigation({ isLoaded }) {
 
   const handleSearch = () => {
     // e.preventDefault();
-
     dispatch(fetchSearchedSpots(searchInput))
     history.push(`/searched?input=${searchInput}`);
-
+    forceUpdate();
+    // getAllSpots(dispatch)
   };
 
   // useEffect(() => {
