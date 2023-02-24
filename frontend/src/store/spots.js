@@ -7,7 +7,7 @@ const ADD_SPOT = 'spots/ADD_SPOT';
 const EDIT_SPOT = 'spots/EDIT';
 const DELETE_SPOT = 'spots/DELETE';
 // const SEARCH_SPOTS = 'spots/SEARCH';
-const CLEAR_SEARCH_SPOTS = "spots/clearSearchSpots";
+// const CLEAR_SEARCH_SPOTS = "spots/clearSearchSpots";
 
 //actions
 // const searchSpots = (spots) => {
@@ -17,11 +17,11 @@ const CLEAR_SEARCH_SPOTS = "spots/clearSearchSpots";
 //     }
 // }
 
-export const clearSearchSpots = () => {
-    return {
-        type: CLEAR_SEARCH_SPOTS
-    };
-};
+// export const clearSearchSpots = () => {
+//     return {
+//         type: CLEAR_SEARCH_SPOTS
+//     };
+// };
 
 const getSpots = (spots) => {
     return {
@@ -208,12 +208,12 @@ const spotsReducer = (state = initialState, action) => {
         //     action.spots.forEach((spot) => (newSpots[spot.id] = spot));
         //     return newSpots
         // }
-        case CLEAR_SEARCH_SPOTS: {
-            return {
-                ...state,
-                searchSpots: {},
-            };
-        }
+        // case CLEAR_SEARCH_SPOTS: {
+        //     return {
+        //         ...state,
+        //         searchSpots: {},
+        //     };
+        // }
         case GET_ALL_SPOTS: {
             let allSpots = {};
             action.spots.spots.forEach((spot) => (allSpots[spot.id] = spot));

@@ -6,7 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import Search from '../Search';
 import './Navigation.css';
 import SearchBar from '../Search';
-import { fetchSearchedSpots} from '../../store/search';
+import { clearSearchSpots, fetchSearchedSpots } from '../../store/search';
 import { getAllSpots } from '../../store/spots';
 
 function Navigation({ isLoaded }) {
@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
-  const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
+  // const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
   // const [loaded, setLoaded] = useState(false)
   // const refresh = () => window.location.reload(true)
   // const handleSubmit = (e)  => {
@@ -23,33 +23,21 @@ function Navigation({ isLoaded }) {
   //   dispatch(fetchSearchedSpots(anywhere))
   // }
   useEffect(() => {
+    let isCancelled = false;
     const currLocation = location.pathname
-    if (!currLocation.startsWith(`/searched`)) setSearchInput("")
+    if (!isCancelled && !currLocation.startsWith(`/searched`)) setSearchInput("")
+
   }, [location])
 
-  const handleSearch = () => {
+  const handleSearch = async (e) => {
     // e.preventDefault();
     dispatch(fetchSearchedSpots(searchInput))
     history.push(`/searched?input=${searchInput}`);
-    forceUpdate();
+    // forceUpdate();
     // getAllSpots(dispatch)
   };
 
-  // useEffect(() => {
-  //   setLoaded(true)
-  // }, [dispatch]);
-  // useEffect(() => {
-  //   const currLocation = location.pathname
-  //   if(!currLocation.startsWith(`/searched`)) setSearchInput("")
-  // }, [location])
 
-  // const handleSearch = async () => {
-  //   history.push(`/searched?input=${searchInput}`);
-  // };
-
-  // useEffect(() => {
-  //   dispatch(getAllSpots());
-  // }, [dispatch]);
   const newTab = (url) => {
     window.open(url, '_blank', 'noopener, noreferrer')
   }
@@ -81,26 +69,26 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
       <div id="home">
-        <div id='logo'>
+        <div id='logo' onClick={() => dispatch(clearSearchSpots())}>
           <NavLink to="/">
             <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png" ></img>
           </NavLink>
         </div>
-        <div className="header-search-container">
+        <div className="header-search-container" style={{ borderColor: "grey" }}>
           <div className="search-input-container">
             <input
               className="search-input"
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Search by city"
+              placeholder=" Search by city..."
               onKeyPress={(e) => {
                 if (e.key === "Enter") handleSearch();
               }}
             />
           </div>
-          <button className="magnify" onClick={() => handleSearch()}>
-            <i></i>
+          <button className="magnify" onClick={(e) => handleSearch(e)}>
+            <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
         {/* <div className='aboutMe'>

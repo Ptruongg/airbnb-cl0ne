@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews";
+import { clearSearchSpots } from "../../store/search";
 import MapContainer from "../GoogleMaps";
 import axios from "axios";
 import SearchBar from "../Search";
@@ -30,6 +31,7 @@ const AllSpots = () => {
 
   // const reviewsString = JSON.stringify(reviews)
   useEffect(() => {
+    // clearSearchSpots(dispatch)
     getAllSpots(dispatch);
   }, [dispatch, JSON.stringify(spots)]);
 

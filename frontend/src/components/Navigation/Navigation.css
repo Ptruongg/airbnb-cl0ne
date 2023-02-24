@@ -197,3 +197,28 @@
     display: flex;
 
 }
+.search-input-container {
+    display: flex;
+    border-color: grey;
+}
+.search-input {
+    display: flex;
+    width: 400px;
+    height: 40px;
+    border-radius: 33px;
+    border-color: #ff385c;
+    background-color: white;
+    position: relative;
+    top: 15px
+}
+.magnify {
+    color: white;
+    border-color: #ff385c;
+    background-color: #ff385c;
+    border-radius: 30px;
+    position: relative;
+    bottom: 30px;
+    left: 410px;
+    height: 42px;
+    width: 50px;
+}
