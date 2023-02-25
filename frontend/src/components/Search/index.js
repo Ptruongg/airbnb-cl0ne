@@ -135,16 +135,14 @@ function SearchBar() {
 
     return (
         <>
-            {/* {search.length ? <h2 className="nav-search">Search Results: </h2> : <div className="in-search">No Results</div>} */}
+            {search.length ? <h2 className="nav-search">Search Results: </h2> : <div className="in-search">No Results</div>}
             <div className="spotsPage">
                 <div className="eachSpot">
-
                     <div className="spotCard">
                         {search.map((spot) => {
                             return <div className="spotCard" key={spot.id}>
                                 <NavLink to={`/spots/${spot.id}`}>
                                     <div className="room">
-
                                         {spot.previewImage && (
                                             <div className="imgDiv">
                                                 <img className="spotImg" src={spot.previewImage} onError={({ currentTarget }) => {
