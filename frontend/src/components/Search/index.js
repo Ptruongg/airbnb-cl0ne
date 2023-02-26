@@ -76,7 +76,7 @@ import axios from "axios";
 // import magnify from "./NavImages/magnifying-glass.svg";
 // import { fetchSearchedSpots } from "../../store/spots";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, NavLink, useHistory } from "react-router-dom";
 import { fetchSearchedSpots } from "../../store/search";
@@ -88,19 +88,19 @@ import Footer from "../Footer";
 // import "./Searched.css";
 
 function SearchBar() {
-    const [spotsShowing, setSpotsShowing] = useState(false);
+    const [spotsShowing, setSpotsShowing] = useState([]);
     const [spotLoaded, setSpotLoaded] = useState(false);
-    const [loadedSpots, setLoadedSpots] = useState("")
+    // const [loadedSpots, setLoadedSpots] = useState("")
     const spots = useSelector((state) => state?.spots)
     const search = useSelector((state) => Object.values(state?.search))
     const normalizedSpots = Object.values(spots);
     const dispatch = useDispatch();
     const history = useHistory();
     const reviews = useSelector((state) => Object.values(state?.reviews));
+    // const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
 
     //const location = useLocation();
-    console.log(spots, 'sppoooooots')
-    console.log(search, 'seaaaaarch')
+
 
     useEffect(() => {
         const url = new URL(window.location.href)
@@ -109,11 +109,15 @@ function SearchBar() {
             let searchInput = searchParameters.get("input");
             console.log("ahhhhh seeeeee", fetchSearchedSpots)
             dispatch(fetchSearchedSpots(searchInput));
-            // setSpotsShowing(!spotsShowing);
-            setLoadedSpots("")
+            setSpotsShowing(!spotsShowing);
+
 
         })();
-    }, [dispatch, JSON.stringify(search)])
+
+    }, [dispatch])
+
+
+
     // useEffect(() => {
     //     dispatch(fetchSearchedSpots(searchInput))
     // }, [spotLoaded, dispatch])

@@ -31,7 +31,7 @@ const AllSpots = () => {
 
   // const reviewsString = JSON.stringify(reviews)
   useEffect(() => {
-    // clearSearchSpots(dispatch)
+
     getAllSpots(dispatch);
   }, [dispatch, JSON.stringify(spots)]);
 
