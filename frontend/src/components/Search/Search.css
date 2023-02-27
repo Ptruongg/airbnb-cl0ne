@@ -1,0 +1,87 @@
+.spotsPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+
+}
+.eachSpot {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 3rem;
+    line-height: 100%;
+    /* height: 100%; */
+    /* justify-content: center;
+    align-items: center; */
+    margin-left: 135px;
+}
+.searchBar {
+    margin-top: 5px;
+}
+.spotImg {
+    flex-wrap: wrap;
+    float: left;
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    border-radius: 33px;
+    object-fit: cover;
+    margin: 1rem;
+    line-height: 100%;
+}
+
+.spotPrice {
+    font-weight: bold;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.spotLocation {
+    padding-left: 17px;
+    padding-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: bold;
+}
+.spotName {
+    padding-left: 17px;
+    padding-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: bold;
+}
+.spotDistance {
+    display: flex;
+    padding-left: 17px;
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.spotPrice {
+    display: flex;
+    padding-left: 17px;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.spot-city {
+    color: black;
+}
+
+.spotStars {
+    color: black;
+}
+
+.spotDistance {
+    color: grey;
+}
+
+.spotPrice {
+    color: black;
+}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews";
+import { clearSearchSpots } from "../../store/search";
 import MapContainer from "../GoogleMaps";
 import axios from "axios";
 import SearchBar from "../Search";
@@ -104,7 +105,6 @@ const AllSpots = () => {
             </div>
           ))}
       </div>
-      )
       <div>
         <Footer />
       </div>
