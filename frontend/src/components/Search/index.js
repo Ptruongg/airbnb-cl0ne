@@ -110,8 +110,6 @@ function SearchBar() {
             console.log("ahhhhh seeeeee", fetchSearchedSpots)
             dispatch(fetchSearchedSpots(searchInput));
             setSpotsShowing(!spotsShowing);
-
-
         })();
 
     }, [dispatch])

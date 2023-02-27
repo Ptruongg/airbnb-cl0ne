@@ -31,7 +31,6 @@ const AllSpots = () => {
 
   // const reviewsString = JSON.stringify(reviews)
   useEffect(() => {
-
     getAllSpots(dispatch);
   }, [dispatch, JSON.stringify(spots)]);
 

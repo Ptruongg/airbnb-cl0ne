@@ -23,7 +23,7 @@ function Navigation({ isLoaded }) {
   //   dispatch(fetchSearchedSpots(anywhere))
   // }
   useEffect(() => {
-    let isCancelled = false;
+    let isCancelled = false
     const currLocation = location.pathname
     if (!isCancelled && !currLocation.startsWith(`/searched`)) setSearchInput("")
 
@@ -83,11 +83,11 @@ function Navigation({ isLoaded }) {
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder=" Search by city..."
               onKeyPress={(e) => {
-                if (e.key === "Enter") handleSearch();
+                if (e.key === "Enter") window.location.reload(handleSearch(e));
               }}
             />
           </div>
-          <button className="magnify" onClick={(e) => handleSearch(e)}>
+          <button className="magnify" onClick={() => window.location.reload(handleSearch())}>
             <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
