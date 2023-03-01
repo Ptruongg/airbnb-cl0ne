@@ -359,17 +359,17 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 })
 
 //search a spot
-router.get("/search", async (req, res, next) => {
-    const { q } = req.query.q
+// router.get("/search", async (req, res, next) => {
+//     const { q } = req.query.q
 
-    const keys = ["city", "state", "country"];
+//     const keys = ["city", "state", "country"];
 
-    const search = (data) => {
-        return data.filter((item) =>
-        keys.some((key) => item[key].toLowerCase().includes(q)))
-    }
-    res.json(search(Spot))
-})
+//     const search = (data) => {
+//         return data.filter((item) =>
+//         keys.some((key) => item[key].toLowerCase().includes(q)))
+//     }
+//     res.json(search(Spot))
+// })
 
 
 module.exports = router;
