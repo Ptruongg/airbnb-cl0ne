@@ -6,22 +6,7 @@ const GET_SPOT_ID = 'spots/GET_SPOT_ID';
 const ADD_SPOT = 'spots/ADD_SPOT';
 const EDIT_SPOT = 'spots/EDIT';
 const DELETE_SPOT = 'spots/DELETE';
-// const SEARCH_SPOTS = 'spots/SEARCH';
-// const CLEAR_SEARCH_SPOTS = "spots/clearSearchSpots";
 
-//actions
-// const searchSpots = (spots) => {
-//     return {
-//         type: SEARCH_SPOTS,
-//         spots,
-//     }
-// }
-
-// export const clearSearchSpots = () => {
-//     return {
-//         type: CLEAR_SEARCH_SPOTS
-//     };
-// };
 
 const getSpots = (spots) => {
     return {
@@ -67,20 +52,7 @@ const deleteSpot = (spotId) => {
 }
 //thunks --
 
-//get all spots
-// export const fetchSearchedSpots = (search) => async (dispatch) => {
-//     const response = search
-//         ? await csrfFetch(`/api/spots?search=${search}`)
-//         : await csrfFetch("/api/spots")
 
-//     if (response.ok) {
-//         const data = await response.json();
-//         console.log(data, 'daaaaaaaaaaata')
-//         dispatch(searchSpots(data.spots));
-//         return response;
-//     }
-//     return response;
-// }
 export const getAllSpots = async (dispatch) => {
     const response = await csrfFetch("/api/spots");
     if (response.ok) {
@@ -125,39 +97,6 @@ export const createSpot = (spot) => async (dispatch) => {
     }
     return response;
 }
-// export const fetchSearchSpots = (searchInput) => async (dispatch) => {
-//     console.log(searchInput, "made itttttttttttttttttttttttttttt")
-//     const response = await csrfFetch("/api/spots/search", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             searchInput
-//         }),
-//     });
-//     if (response.ok) {
-//         const data = await response.json();
-//         console.log(data, "made itttttttttttttttttttttttttttt")
-
-//         dispatch(searchSpots(data));
-//         return response;
-//     }
-//     return response;
-// };
-
-
-//edit a spot
-// export const editSpotID = (spot) => async (dispatch) => {
-//     const response = await csrfFetch(`api/spots/${spot.spotId}`, {
-//         method: "PUT",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(spot)
-//     });
-//     if (response.ok) {
-//         const editedSpot = await response.json();
-//         dispatch(editSpot(editedSpot))
-//         return editedSpot;
-//     }
-//     return response;
-// }
 
 //edit a spot
 export const spotEdit = (spot) => async (dispatch) => {
@@ -188,32 +127,11 @@ export const deleteSpotId = (spotId) => async (dispatch) => {
     return response
 }
 
-// function normalizedObj(array) {
-//     let newObj = {};
-//     array.forEach((ele) => {
-//         if (ele.avgRating) {
-//             ele.avgRating = Math.round(ele.avgRating * 10) / 10
-//         }
-//         newObj[ele.id] = ele;
-//     });
-//     return newObj;
-// }
+
 
 const initialState = {};
 const spotsReducer = (state = initialState, action) => {
-    // const newState = { ...state }
     switch (action.type) {
-        // case SEARCH_SPOTS: {
-        //     let newSpots = { ...state };
-        //     action.spots.forEach((spot) => (newSpots[spot.id] = spot));
-        //     return newSpots
-        // }
-        // case CLEAR_SEARCH_SPOTS: {
-        //     return {
-        //         ...state,
-        //         searchSpots: {},
-        //     };
-        // }
         case GET_ALL_SPOTS: {
             let allSpots = {};
             action.spots.spots.forEach((spot) => (allSpots[spot.id] = spot));

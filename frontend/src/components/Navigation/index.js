@@ -6,7 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import Search from '../Search';
 import './Navigation.css';
 import SearchBar from '../Search';
-import { clearSearchSpots, fetchSearchedSpots } from '../../store/search';
+import { fetchSearchedSpots } from '../../store/search';
 import { getAllSpots } from '../../store/spots';
 
 function Navigation({ isLoaded }) {
@@ -69,7 +69,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
       <div id="home">
-        <div id='logo' onClick={() => dispatch(clearSearchSpots())}>
+        <div id='logo'>
           <NavLink to="/">
             <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png" ></img>
           </NavLink>
@@ -88,7 +88,7 @@ function Navigation({ isLoaded }) {
             />
           </div>
           <button className="magnify" onClick={() => window.location.reload(handleSearch())}>
-            <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+            <i className='fa-sharp fa-solid fa-magnifying-glass'></i>
           </button>
         </div>
         {/* <div className='aboutMe'>
