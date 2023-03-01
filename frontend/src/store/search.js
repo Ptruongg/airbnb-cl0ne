@@ -22,7 +22,6 @@ export const fetchSearchedSpots = (search) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data, 'daaaaaaaaaaata')
         dispatch(searchSpots(data.spots));
         return response;
     }

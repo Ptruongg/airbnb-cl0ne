@@ -16,7 +16,6 @@ import UserReviews from "./components/UserSpots/userReviews";
 import UserSpots from "./components/UserSpots";
 import BookingPage from "./components/Bookings/BookingPage";
 import MyBookings from "./components/Bookings/myBookings";
-import Search from "./components/Search/index"
 import Footer from "./components/Footer";
 import SearchBar from "./components/Search/index";
 

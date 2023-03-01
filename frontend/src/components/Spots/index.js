@@ -25,8 +25,7 @@ const AllSpots = () => {
   const [searchInput, setSearchInput] = useState("");
   const searchedSpots = useSelector((state) => state.spots.searchSpots)
   const handleSubmit = (e) => e.preventDefault();
-  console.log(searchedSpots, 'seaaaarchedddd')
-  console.log(spots, 'allspots')
+
 
 
   // const reviewsString = JSON.stringify(reviews)

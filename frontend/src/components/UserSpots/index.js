@@ -9,7 +9,7 @@ const UserSpots = () => {
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
     const spotsList = useSelector((state) => Object.values(state.spots))
-    console.log("spots", spotsList)
+
     const handleClick = (spot) => {
         history.push(`/spots/${spot.id}`)
     }

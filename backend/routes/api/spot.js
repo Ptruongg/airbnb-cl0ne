@@ -52,8 +52,7 @@ router.get("/", async (req, res) => {
         city: sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + toLower+ '%')
       }
     })
-    console.log("what is being look", search)
-    console.log("name of this pklace", namedSpots)
+
     spots = namedSpots;
   };
   if(!search) {

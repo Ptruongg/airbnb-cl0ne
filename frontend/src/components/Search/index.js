@@ -107,7 +107,6 @@ function SearchBar() {
         const searchParameters = url.searchParams;
         (async () => {
             let searchInput = searchParameters.get("input");
-            console.log("ahhhhh seeeeee", fetchSearchedSpots)
             dispatch(fetchSearchedSpots(searchInput));
             setSpotsShowing(!spotsShowing);
         })();
