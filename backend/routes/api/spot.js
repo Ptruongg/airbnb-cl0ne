@@ -10,15 +10,7 @@ const { Op } = require('sequelize')
 
 
 
-//get all spots route
-// router.get('/', async (req, res) => {
-//     const spots = await Spot.findAll({
-//         include: [Review]
-//     })
-//     return res.json(spots);
 
-// })
-// add query filters to get all spots
 router.get("/", async (req, res) => {
   const pagination = {
     filter: [],
@@ -148,8 +140,8 @@ router.get("/", async (req, res) => {
   }
 
 
-  pagination.size = size;
-  pagination.page = page;
+  // pagination.size = size;
+  // pagination.page = page;
 
 
   res.json({
