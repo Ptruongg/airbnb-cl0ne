@@ -3,7 +3,7 @@ import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createBooking, getAllBookings } from "../../store/bookings";
 import LoginFormModal from "../LoginFormModal";
-import { compareAsc, format } from "date-fns";
+import { format } from "date-fns";
 import "./createBooking.css"
 
 function CreateBookingForm({ spot, star, review, booking }) {
@@ -68,7 +68,7 @@ function CreateBookingForm({ spot, star, review, booking }) {
             );
         }
         setErrors(errors);
-    }, [startDate]);
+    }, [startDate, endDate, errors]);
 
     useEffect(() => {
         setTimeDifference(

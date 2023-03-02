@@ -1,25 +1,20 @@
 
-import axios from "axios";
-
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, NavLink, useHistory } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { fetchSearchedSpots } from "../../store/search";
-import { loadSpotReviewsThunk } from "../../store/reviews";
-import SpotsDetail from "../SpotDetails";
-import { getAllSpots } from "../../store/spots";
 import Footer from "../Footer";
 
 
 function SearchBar() {
-    const [spotsShowing, setSpotsShowing] = useState([]);
-    const [spotLoaded, setSpotLoaded] = useState(false);
+    // const [spotsShowing, setSpotsShowing] = useState([]);
+    // const [spotLoaded, setSpotLoaded] = useState(false);
     // const [loadedSpots, setLoadedSpots] = useState("")
-    const spots = useSelector((state) => state?.spots)
+    // const spots = useSelector((state) => state?.spots)
     const search = useSelector((state) => Object.values(state?.search))
-    const normalizedSpots = Object.values(spots);
+    // const normalizedSpots = Object.values(spots);
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const reviews = useSelector((state) => Object.values(state?.reviews));
     // const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
 
@@ -32,7 +27,7 @@ function SearchBar() {
         (async () => {
             let searchInput = searchParameters.get("input");
             dispatch(fetchSearchedSpots(searchInput));
-            setSpotsShowing(!spotsShowing);
+            // setSpotsShowing(!spotsShowing);
         })();
 
     }, [dispatch])

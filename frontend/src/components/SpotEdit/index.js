@@ -16,6 +16,8 @@ const SpotEdit = () => {
     const [city, setCity] = useState(spot?.city);
     const [state, setState] = useState(spot?.state);
     const [country, setCountry] = useState(spot?.country);
+    const [lat, setLat] = useState(spot?.lat);
+    const [lng, setLng] = useState(spot?.lng);
     const [name, setName] = useState(spot?.name);
     const [description, setDescription] = useState(spot?.description);
     const [price, setPrice] = useState(spot?.price);
@@ -26,6 +28,8 @@ const SpotEdit = () => {
     const updatedCity = (e) => setCity(e.target.value);
     const updatedState = (e) => setState(e.target.value);
     const updatedCountry = (e) => setCountry(e.target.value);
+    const updateLat = (e) => setLat(e.target.value);
+    const updateLng = (e) => setLng(e.target.value);
     const updatedName = (e) => setName(e.target.value);
     const updatedDescription = (e) => setDescription(e.target.value);
     const updatedPrice = (e) => setPrice(e.target.value);
@@ -61,6 +65,8 @@ const SpotEdit = () => {
             state,
             country,
             name,
+            lat,
+            lng,
             description,
             price,
             previewImage,
@@ -86,13 +92,15 @@ const SpotEdit = () => {
                 <h2>Edit Your Airbnb</h2>
             </div>
             <form className="spotForm" onSubmit={handleSubmit}>
+                <div style={{color: "#ff385c"}}>
                 {errors ?? (
-                    <ul>
+                    <ul >
                         {errors.map((error, idx) => (
                             <li key={idx}>{error}</li>
                         ))}
                     </ul>
                 )}
+                </div>
                 <div>
                     <label>
                         Address
@@ -141,7 +149,24 @@ const SpotEdit = () => {
                     </label>
                 </div>
                 <div>
-
+                    <label>Latitude</label>
+                    <input
+                        type="text"
+                        placeholder="Latitude"
+                        value={lat}
+                        onChange={updateLat}
+                    />
+                </div>
+                <div>
+                    <label>Longitude</label>
+                    <input
+                        type="text"
+                        placeholder="Longitude"
+                        value={lng}
+                        onChange={updateLng}
+                    />
+                </div>
+                <div>
                     <label>
                         Name
                         <input

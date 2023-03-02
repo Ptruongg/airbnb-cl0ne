@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-import Search from '../Search';
-import './Navigation.css';
-import SearchBar from '../Search';
 import { fetchSearchedSpots } from '../../store/search';
-import { getAllSpots } from '../../store/spots';
+import './Navigation.css';
+
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -25,7 +23,7 @@ function Navigation({ isLoaded }) {
   useEffect(() => {
     let isCancelled = false
     const currLocation = location.pathname
-    if (!isCancelled && !currLocation.startsWith(`/searched`)) setSearchInput("")
+    if (!isCancelled && !currLocation.startsWith("/searched")) setSearchInput("")
 
   }, [location])
 
@@ -38,9 +36,9 @@ function Navigation({ isLoaded }) {
   };
 
 
-  const newTab = (url) => {
-    window.open(url, '_blank', 'noopener, noreferrer')
-  }
+  // const newTab = (url) => {
+  //   window.open(url, '_blank', 'noopener, noreferrer')
+  // }
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -83,7 +81,7 @@ function Navigation({ isLoaded }) {
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder=" Search by city..."
               onKeyPress={(e) => {
-                if (e.key === "Enter") window.location.reload(handleSearch(e));
+                if (e.key === "Enter") window.location.reload(handleSearch());
               }}
             />
           </div>
