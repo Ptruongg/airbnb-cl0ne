@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadSpotReviewsThunk } from "../../store/reviews";
-import { clearSearchSpots } from "../../store/search";
-import MapContainer from "../GoogleMaps";
-import axios from "axios";
-import SearchBar from "../Search";
 import Footer from "../Footer"
 import "./spots.css";
 
-// import spot = require("../../../../backend/db/models/spot");
+
 
 const AllSpots = () => {
   const dispatch = useDispatch();
@@ -20,11 +16,7 @@ const AllSpots = () => {
   const spots = useSelector((state) => Object.values(state?.spots));
   const sessionUser = useSelector((state) => state.session.user)
   const reviews = useSelector((state) => Object.values(state?.reviews));
-  const [APIData, setAPIData] = useState([]);
-  const [filteredResults, setFilteredResults] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-  const searchedSpots = useSelector((state) => state.spots.searchSpots)
-  const handleSubmit = (e) => e.preventDefault();
+
 
 
 
