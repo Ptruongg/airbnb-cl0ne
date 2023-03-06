@@ -22,7 +22,6 @@ function SearchBar() {
     }, [dispatch])
 
 
-
     const starSpot = (spotId) => {
         const allReviewsForThisSpot = reviews.filter((review) => {
             return review.spotId === spotId;
