@@ -13,13 +13,7 @@ function Navigation({ isLoaded }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
-  // const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
-  // const [loaded, setLoaded] = useState(false)
-  // const refresh = () => window.location.reload(true)
-  // const handleSubmit = (e)  => {
-  //   e.preventDefault()
-  //   dispatch(fetchSearchedSpots(anywhere))
-  // }
+
   useEffect(() => {
     let isCancelled = false
     const currLocation = location.pathname
@@ -31,8 +25,7 @@ function Navigation({ isLoaded }) {
     // e.preventDefault();
     dispatch(fetchSearchedSpots(searchInput))
     history.push(`/searched?input=${searchInput}`);
-    // forceUpdate();
-    // getAllSpots(dispatch)
+
   };
 
 
@@ -89,14 +82,6 @@ function Navigation({ isLoaded }) {
             <i className='fa-sharp fa-solid fa-magnifying-glass'></i>
           </button>
         </div>
-        {/* <div className='aboutMe'>
-          <div className='github' onClick={() => newTab('https://github.com/Ptruongg/airbnb-cl0ne')}>
-            Github
-          </div>
-          <div className='name'>
-            Developed by Philip Truong
-          </div>
-        </div> */}
         {isLoaded && sessionLinks}
       </div>
 

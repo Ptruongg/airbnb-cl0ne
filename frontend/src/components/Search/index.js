@@ -7,27 +7,16 @@ import Footer from "../Footer";
 
 
 function SearchBar() {
-    // const [spotsShowing, setSpotsShowing] = useState([]);
-    // const [spotLoaded, setSpotLoaded] = useState(false);
-    // const [loadedSpots, setLoadedSpots] = useState("")
-    // const spots = useSelector((state) => state?.spots)
     const search = useSelector((state) => Object.values(state?.search))
-    // const normalizedSpots = Object.values(spots);
-    const dispatch = useDispatch();
-    // const history = useHistory();
+    const dispatch = useDispatch()
     const reviews = useSelector((state) => Object.values(state?.reviews));
-    // const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
-
-    //const location = useLocation();
-
 
     useEffect(() => {
         const url = new URL(window.location.href)
         const searchParameters = url.searchParams;
         (async () => {
             let searchInput = searchParameters.get("input");
-            dispatch(fetchSearchedSpots(searchInput));
-            // setSpotsShowing(!spotsShowing);
+            dispatch(fetchSearchedSpots(searchInput))
         })();
 
     }, [dispatch])
