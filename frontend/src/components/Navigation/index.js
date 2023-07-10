@@ -49,7 +49,7 @@ function Navigation({ isLoaded }) {
             <LoginFormModal />
           </button>
           <button id='signUpButtonDiv' style={{ width: "100px", borderRadius: "2em", borderColor: "#ff385c", height: "35px", alignItems: "center", justifyContent: "center" }}>
-            <NavLink id='signUp' to="/signup">Sign Up</NavLink>
+            <NavLink id='signUp' to="/signup" style={{ fontWeight: "bold"}}>Sign Up</NavLink>
           </button>
         </div>
       </>
@@ -65,17 +65,19 @@ function Navigation({ isLoaded }) {
             <img src="https://www.codingexercises.com/img/2019-10-09/build-an-airbnb-clone-with-bootstrap-4.png" ></img>
           </NavLink>
         </div>
-        <div className="header-search-container" style={{ borderColor: "grey" }}>
-          <div className="search-input-container">
+        <div className="header-search-container" style={{ borderColor: "pink" }}>
+          <div className="search-input-container" >
             <input
               className="search-input"
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder=" Search by city..."
+              placeholder= "        Search by city..."
               onKeyPress={(e) => {
                 if (e.key === "Enter") window.location.reload(handleSearch());
+
               }}
+              style={{borderColor: "#ff385c"}}
             />
           </div>
           <button className="magnify" onClick={() => window.location.reload(handleSearch())}>

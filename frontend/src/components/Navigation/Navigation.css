@@ -57,17 +57,23 @@
     align-items: center;
     cursor: pointer;
 }
-
+#signUpButtonDiv {
+    display: flex;
+    width: 100px;
+    background-color: white;
+    font-weight: bold;
+}
 
 #loginButtonDiv {
     color: #ff385c;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     margin-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background-color: white;
 }
 
 #signUp {
@@ -189,10 +195,7 @@
     margin-right: 10px ;
 
 }
-#signUpButtonDiv {
-    display: flex;
-    width: 100px;
-}
+
 #loginiButtonDiv {
     display: flex;
 
@@ -209,7 +212,7 @@
     border-color: #ff385c;
     background-color: white;
     position: relative;
-    top: 15px
+    top: 15px;
 }
 .magnify {
     color: white;

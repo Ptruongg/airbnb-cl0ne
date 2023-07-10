@@ -24,7 +24,7 @@ function LoginForm() {
   return (
     <div className="modal">
       <div>
-        <h2 className="welcomeContainer"> Airbnb Cl0ne Login </h2>
+        <h2 className="welcomeContainer"> Airbnb Clone Login </h2>
       </div>
       <form className="loginContainer" onSubmit={handleSubmit}>
         <div id="errors_login">
