@@ -239,4 +239,13 @@
     display: grid;
     align-items: center;
     justify-content: flex-start;
+
+}
+
+.reviewTitle {
+    display: flex;
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: #d3d3d3 solid 1px;
 }

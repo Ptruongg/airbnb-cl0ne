@@ -202,7 +202,7 @@
 }
 .search-input-container {
     display: flex;
-    border-color: grey;
+    border-color: #ff385c;
 }
 .search-input {
     display: flex;
@@ -213,6 +213,9 @@
     background-color: white;
     position: relative;
     top: 15px;
+    margin-right: 20px;
+
+
 }
 .magnify {
     color: white;

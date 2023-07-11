@@ -72,12 +72,12 @@ function Navigation({ isLoaded }) {
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder= "        Search by city..."
+              placeholder= "     Search by city..."
               onKeyPress={(e) => {
                 if (e.key === "Enter") window.location.reload(handleSearch());
 
               }}
-              style={{borderColor: "#ff385c"}}
+              style={{boxSizing: "50%", backgroundColor: "ff385c", outline: "none"}}
             />
           </div>
           <button className="magnify" onClick={() => window.location.reload(handleSearch())}>

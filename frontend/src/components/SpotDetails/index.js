@@ -160,6 +160,7 @@ const SpotsDetail = () => {
                 </div>
               </div>
               <div className="spotsReviews">
+                <div className="reviewTitle">Reviews</div>
                 <div className="reviewStars">
                   <div className="starIcon">{<i className="fas fa-star"></i>}</div>
                   <div className="avgRatingBottom">
