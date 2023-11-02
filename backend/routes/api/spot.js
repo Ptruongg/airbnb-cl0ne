@@ -8,9 +8,6 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 const { Op } = require('sequelize')
 
-
-
-
 router.get("/", async (req, res) => {
   const pagination = {
     filter: [],
