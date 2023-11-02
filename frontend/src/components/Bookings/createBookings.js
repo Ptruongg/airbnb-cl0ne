@@ -38,16 +38,16 @@ function CreateBookingForm({ spot, star, review, booking }) {
     const [serviceFee, setServiceFee] = useState(Math.ceil(subTotal / 4));
     const [total, setTotal] = useState(subTotal - cleaningFee + serviceFee);
 
-    // const getDate = (today) => {
-    //     let result;
-    //     let month =
-    //         today.getMonth() + 1 < 10
-    //             ? `0${today.getMonth() + 1}`
-    //             : today.getMonth() + 1;
-    //     let day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
-    //     result = `${today.getFullYear()}-${month}-${day}`;
-    //     return result;
-    // };
+    const getDate = (today) => {
+        let result;
+        let month =
+            today.getMonth() + 1 < 10
+                ? `0${today.getMonth() + 1}`
+                : today.getMonth() + 1;
+        let day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
+        result = `${today.getFullYear()}-${month}-${day}`;
+        return result;
+    };
 
     useEffect(() => {
         let updatedStart = new Date(startDate);
