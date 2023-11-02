@@ -29,7 +29,6 @@ router.get("/", async (req, res) => {
     where: {}
   };
 
-
   let spots;
 
   if (search) {
