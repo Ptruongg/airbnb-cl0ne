@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import {deleteBooking, getUserBookings} from "../../store/bookings"
 import "./deleteBooking.css"
 
 function DeleteComment({ booking, onClick }) {
   let dispatch = useDispatch();
-  let history = useHistory();
+  // let history = useHistory();
 
   const onDelete = (e) => {
     e.preventDefault();
