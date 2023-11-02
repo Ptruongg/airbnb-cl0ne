@@ -24,7 +24,7 @@ module.exports = {
         "description": "Welcome to Casa de Manzanita! Step into a romantic getaway that has been tastefully remodeled with modern charm! A cozy studio with a modern kitchen with everything you need including a coffee bar, a modern bathroom with a rainfall shower and a private jacuzzi in the backyard.",
         "price": 123,
         "avgRating": 4.5,
-        "previewImage": "https://2traveldads.com/wp-content/uploads/2017/07/Goofys-House-in-Toontown-Disneyland-1.jpg"
+        "previewImage": "https://media.timeout.com/images/105934418/750/422/image.jpg"
       },
       {
         "ownerId": 2,
@@ -38,7 +38,7 @@ module.exports = {
         "description": "The Arnold Hideout Cabin is a one-of-a-kind home, located a short drive from the Big Trees and Wine country. Remodeled in 2021 this is a home with such an elevated look and feel. Designed with beautiful materials and furnished with modern and rustic pieces the Cabin sleeps 8. The interior is a open-plan. An expansive back new patio with a Hot Tub, Fire pit, BBQ and table. All upscale cookware, appliances, mattresses and Linens. Our home is equipped with a central heat and AC.",
         "price": 565,
         "avgRating": 4.8,
-        "previewImage": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt9834851b906877fe/6082129712dc9d3c683578ec/4_27_2021_Patch2.8Article_Banner.jpg"
+        "previewImage": "https://hgtvhome.sndimg.com/content/dam/images/hgtv/products/2021/3/11/2/rx_airbnb_reginald-marshs-woodstock-ny-home.jpeg.rend.hgtvcom.616.411.suffix/1615497788554.jpeg"
       },
       {
         "ownerId": 3,
@@ -52,7 +52,7 @@ module.exports = {
         "description": "This beautiful, pet- friendly condo has a luxury contemporary vibe with two bedrooms and two bathrooms. Perfect for any season when visiting Mammoth. This condo is located walking distance to Canyon Lodge at Mammoth Mountain Ski Area, right on the Ski Back Trail. During the summer, you can visit the Lakes Basin, or a day trip to Yosemite. Large flat screen tv, fully equipped kitchen, luxury beds, plus a common area game room, pool and hot tub.",
         "price": 3565,
         "avgRating": 3.5,
-        "previewImage": "https://www.technewstoday.com/wp-content/uploads/2022/03/haven-1.jpg"
+        "previewImage": "https://www.travelandleisure.com/thmb/5KH1_3dKLruIyfz8XLdgLtuMp6I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-hidden-haven-villa-south-africa-airbnb-NEWBNBCAT0123-0e3c6ef5dce0490aac7dd5cd92b27f33.jpg"
       },
       {
         "ownerId": 4,
@@ -66,7 +66,7 @@ module.exports = {
         "description": "Located right in the heart of downtown, and only 32 miles from the Arch Rock Entrance to Yosemite! Built in 1938 with original wood floors and lots of stories. Enjoy this private and peaceful Bunglow tucked quietly off of the historic downtown main street of Mariposa. With a giant King sized bed, fully accessible bathroom 'oasis', full kitchen, private patio, and sleeper sofa.",
         "price": 9005,
         "avgRating": 5.0,
-        "previewImage": "https://www.mandatory.gg/wp-content/uploads/news/2020/06/ascent/valorant-map-ascent-centre-768x432.jpg"
+        "previewImage": "https://global-uploads.webflow.com/5f691eeb591d83f2cb7696ab/62619407fce2fa828720ef7d_airbnb.jpg"
       },
       {
         "ownerId": 5,
@@ -164,7 +164,21 @@ module.exports = {
         "description": "Celebrate your family vacation or reunion here. Completely refurnished with brand new furnishings, lights and linens. Huge yard, hot tub, dock, boat lift, sleeps 14!",
         "price": 10000,
         "avgRating": 0.05,
-        "previewImage": "https://a0.muscache.com/im/pictures/654caf80-3e06-47b1-962a-e6c849c44644.jpg?im_w=960"
+        "previewImage": "https://images.squarespace-cdn.com/content/v1/5e72c8bfe21ad940ba788673/1626985470666-LVUUK5JZ5LE0O893756Z/what-is-airbnb-thumbnail.jpg"
+      },
+      {
+        "ownerId": 12,
+        "address": "3777 Lala Lane",
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States of America",
+        "lat": 37.7645556,
+        "lng": -122.478331,
+        "name": "Paradise Palace",
+        "description": "Where you can find your paradise. Open backyard and living room. Can fit 15 people easily. Great for big groups and families get togethers",
+        "price": 5250,
+        "avgRating": 5.00,
+        "previewImage": "https://guesthoo.com/wp-content/uploads/2018/12/barn-kitchen.jpg"
       }
     ])
   },
