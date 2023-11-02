@@ -83,7 +83,7 @@ module.exports = {
         "previewImage": "https://media-cdn.tripadvisor.com/media/photo-s/0f/67/6c/17/bill-graham-civic-auditorium.jpg"
       },
       {
-        "ownerId": 6,
+        "ownerId": 1,
         "address": "3412 Icebox Lane",
         "city": "Los Angeles",
         "state": "California",
@@ -97,7 +97,7 @@ module.exports = {
         "previewImage": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/top-airbnb-alternatives-2021-1613057911.jpg"
       },
       {
-        "ownerId": 7,
+        "ownerId": 2,
         "address": "331 Teahole",
         "city": "Tahoe",
         "state": "California",
@@ -111,7 +111,7 @@ module.exports = {
         "previewImage": "https://a0.muscache.com/im/pictures/fe13b749-ad2b-45fb-af19-a91e81250dcb.jpg?im_w=1200"
       },
       {
-        "ownerId": 8,
+        "ownerId": 3,
         "address": "1225 Maribelle Rd.",
         "city": "San Jose",
         "state": "California",
@@ -125,7 +125,7 @@ module.exports = {
         "previewImage": "https://a0.muscache.com/im/pictures/prohost-api/Hosting-53153894/original/36abaefb-86c5-409e-ad25-7fbdf80fd29d.jpeg?im_w=1200"
       },
       {
-        "ownerId": 9,
+        "ownerId": 4,
         "address": "2868 Bind Ct",
         "city": "San Diego",
         "state": "California",
@@ -139,7 +139,7 @@ module.exports = {
         "previewImage": "https://media-cdn.tripadvisor.com/media/photo-s/0f/67/6c/17/bill-graham-civic-auditorium.jpg"
       },
       {
-        "ownerId": 10,
+        "ownerId": 5,
         "address": "578 Pearl Ave.",
         "city": "Lake Tahoe",
         "state": "California",
@@ -153,7 +153,7 @@ module.exports = {
         "previewImage": "https://a0.muscache.com/im/pictures/miso/Hosting-47818404/original/54edef36-4b46-44c0-964a-031bbfb930f9.jpeg?im_w=1200"
       },
       {
-        "ownerId": 11,
+        "ownerId": 1,
         "address": "4010 Woodland Lane",
         "city": "Las Vegas",
         "state": "Neveda",
@@ -167,7 +167,7 @@ module.exports = {
         "previewImage": "https://images.squarespace-cdn.com/content/v1/5e72c8bfe21ad940ba788673/1626985470666-LVUUK5JZ5LE0O893756Z/what-is-airbnb-thumbnail.jpg"
       },
       {
-        "ownerId": 12,
+        "ownerId": 2,
         "address": "3777 Lala Lane",
         "city": "San Francisco",
         "state": "California",
